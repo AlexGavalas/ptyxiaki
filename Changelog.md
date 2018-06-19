@@ -12,7 +12,6 @@ So, a few things have changed in the JS ecosystem since the original release of 
   - Parallelized Tests
   - DLL manifest in development for blazing rebuilds
   - Scaffolding tools
-- Pre-baked i18n support
 - Low level tooling that gives developer complete control
 
 We may include SSR in a future version, but for now this is our focus... create-react-app and next.js are doing an awesome job and strongly recommend these projects for most use cases.
@@ -79,7 +78,6 @@ Many fixes to documentation thanks to @Aftabnack, @auchenberg, @danielrob, @greg
 - Update all dependencies, as always huge thanks to @gihrig, our master of dependencies
 - Enable `import/first` eslint rule and rewrite all imports, huge thanks to @KarandikarMihir
 - Add Node v7 support and deprecate v4 support, thanks to @samit4me @MariusRumpf
-- Prevent i18n language duplication, thanks to @harijoe
 - Add the webpack circular dependency plugin to avoid hard to debug errors, thanks to @haikyuu
 - Refactor all selectors and generators with new naming convention, thanks to @Dattaya
 - Update generator templates, thanks to @Virsaviya @jeremyadavis
@@ -98,7 +96,6 @@ Many fixes to documentation thanks to @Aftabnack, @auchenberg, @danielrob, @greg
 - Improve `.editconfig`, thanks to @avdeev
 - Improve the example components, thanks to @tomazy
 - Fix `npm run clean` not working as expected, thanks to @adjnor
-- Fix the i18n button not updating with new state, thanks to @adjnor
 - Fix console error when changing language, thanks to @samit4me
 - Fix default polyfill language, thanks to @web2style
 - Fix language generation, thanks to @chaintng
