@@ -1,8 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-import Img from './Img';
-import NavBar from './NavBar';
-import HeaderLink from './HeaderLink';
+import Img from 'components/Img';
 import Banner from './banner.jpg';
 
 class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -10,12 +9,8 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
     return (
       <div>
         <Img src={Banner} alt="react-boilerplate - Logo" />
-        <NavBar>
-          <HeaderLink to="/">
-          </HeaderLink>
-          <HeaderLink to="/features">
-          </HeaderLink>
-        </NavBar>
+        <Link to="/" />
+        <Link to="/features" />
       </div>
     );
   }

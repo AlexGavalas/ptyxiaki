@@ -1,7 +1,3 @@
-/**
- * Combine all reducers in this file and export the combined reducers.
- */
-
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
