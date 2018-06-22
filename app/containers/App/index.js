@@ -1,25 +1,43 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import HomePage from 'containers/HomePage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+import Login from 'components/Login';
 
-export default function App() {
-  return (
-    <div>
-      <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
-      >
-        <meta name="description" content="A React.js Boilerplate application" />
-      </Helmet>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-      </Switch>
-      <Footer />
-    </div>
-  );
+import { fetchUserInfo } from './actions';
+
+class App extends React.Component {
+
+  componentDidMount() {
+    this.props.dispatch(fetchUserInfo());
+  }
+
+  render() {
+    return (
+      <div>
+        <Helmet
+          titleTemplate="%s"
+          defaultTitle="JMCAO"
+        >
+          <meta name="description" content="A React.js Boilerplate application" />
+        </Helmet>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/login" component={Login} />
+        </Switch>
+        <Footer />
+      </div>
+    );
+  }
 }
+
+App.propTypes = {
+  dispatch: PropTypes.func,
+};
+
+export default App;
