@@ -20,11 +20,9 @@ class App extends React.Component {
     return (
       <div>
         <Helmet
-          titleTemplate="%s"
+          titleTemplate="%s - JMCAO"
           defaultTitle="JMCAO"
-        >
-          <meta name="description" content="A React.js Boilerplate application" />
-        </Helmet>
+        />
         <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />

@@ -13,12 +13,9 @@ import reducer from './reducer';
 import saga from './saga';
 import { fetchUserInfo } from './actions';
 
-class HomePage extends React.PureComponent {
+class HomePage extends React.Component {
 
   componentDidMount() {
-    if (this.props.username && this.props.username.trim().length > 0) {
-      this.props.onSubmitForm();
-    }
     this.props.dispatch(fetchUserInfo());
   }
 
@@ -27,7 +24,6 @@ class HomePage extends React.PureComponent {
       <article>
         <Helmet>
           <title>Home Page</title>
-          <meta name="description" content="" />
         </Helmet>
         <Jumbotron bsClass="jumbotron-home-page">
           <h1>Hello, world!</h1>
@@ -45,8 +41,6 @@ class HomePage extends React.PureComponent {
 
 HomePage.propTypes = {
   dispatch: PropTypes.func,
-  onSubmitForm: PropTypes.func,
-  username: PropTypes.string,
 };
 
 const mapDispatchToProps = (dispatch) => ({ dispatch });

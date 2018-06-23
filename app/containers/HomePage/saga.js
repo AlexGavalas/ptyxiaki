@@ -1,13 +1,13 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-import axios from 'axios';
+import * as apis from './apis';
 
 import { FETCH_USER_INFO } from './constants';
 
 export function* fetchUserInfo() {
-  const response = yield axios.get('user');
+  const response = yield call(apis.fetchUserInfo);
   console.log(response);
 }
 
-export default function* githubData() {
-  yield takeLatest(FETCH_USER_INFO, fetchUserInfo);
+export default function* watcher() {
+  yield takeLatest([FETCH_USER_INFO], fetchUserInfo);
 }

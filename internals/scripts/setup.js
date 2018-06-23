@@ -1,11 +1,7 @@
-#!/usr/bin/env node
-
-'use strict';
-
 const shell = require('shelljs');
 const exec = require('child_process').exec;
 const path = require('path');
-const fs   = require('fs');
+const fs = require('fs');
 const animateProgress = require('./helpers/progress');
 const addCheckMark = require('./helpers/checkmark');
 const readline = require('readline');
@@ -19,7 +15,7 @@ let clearRepo = true;
 
 cleanRepo(() => {
   process.stdout.write('\nInstalling dependencies... (This might take a while)');
-  setTimeout(function () {
+  setTimeout(() => {
     readline.cursorTo(process.stdout, 0);
     interval = animateProgress('Installing dependencies');
   }, 500);
@@ -32,21 +28,21 @@ cleanRepo(() => {
  */
 function cleanRepo(callback) {
   fs.readFile('.git/config', 'utf8', (err, data) => {
-    if(!err) {
-      let isClonedRepo = typeof data === 'string' 
+    if (!err) {
+      const isClonedRepo = typeof data === 'string'
         && (data.match(/url\s*=/g) || []).length === 1
         && /react-boilerplate\/react-boilerplate\.git/.test(data);
-      if(isClonedRepo) {
+      if (isClonedRepo) {
         process.stdout.write('\nDo you want to clear old repository? [Y/n] ');
         process.stdin.resume();
-        process.stdin.on('data', (data) => {
-          let val = data.toString().trim();
-          if(val === 'y' || val === 'Y' || val === '') {
+        process.stdin.on('data', (data2) => {
+          const val = data2.toString().trim();
+          if (val === 'y' || val === 'Y' || val === '') {
             process.stdout.write('Removing old repository');
             shell.rm('-rf', '.git/');
             addCheckMark(callback);
           } else {
-            dontClearRepo('', callback); 
+            dontClearRepo('', callback);
           }
         });
       } else {
