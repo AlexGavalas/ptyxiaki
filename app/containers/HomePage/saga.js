@@ -3,7 +3,7 @@ import * as apis from './apis';
 
 import { FETCH_USER_INFO } from './constants';
 
-export function* fetchUserInfo() {
+function* fetchUserInfo() {
   const response = yield call(apis.fetchUserInfo);
   console.log(response);
 }

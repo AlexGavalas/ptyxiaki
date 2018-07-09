@@ -25,7 +25,7 @@ class HomePage extends React.Component {
         <Helmet>
           <title>Home Page</title>
         </Helmet>
-        <Jumbotron bsClass="jumbotron-home-page">
+        <Jumbotron>
           <h1>Hello, world!</h1>
           <p>
             The only thing we have to loose, are our chains.
