@@ -15,4 +15,20 @@ const getUser = (req, res) => {
   } else res.json({});
 };
 
-module.exports = { getUser };
+const checkUser = (data, res) => {
+  const database = db.connect(url);
+
+  if (database) {
+    const users = database.collection('users');
+
+    users.find(data).toArray((err, doc) => {
+      if (err) console.log('ERROR');
+
+      if (doc.length === 0) res.json('HACKER');
+
+      else res.json('KOMPLE');
+    });
+  }
+};
+
+module.exports = { getUser, checkUser };

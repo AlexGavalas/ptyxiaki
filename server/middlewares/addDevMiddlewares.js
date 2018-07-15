@@ -2,6 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
+const bodyParser = require('body-parser');
+const user = require('../users');
 
 function createWebpackMiddleware(compiler, publicPath) {
   return webpackDevMiddleware(compiler, {
@@ -19,11 +21,20 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
 
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: true }));
+
   // Since webpackDevMiddleware uses memory-fs internally to store build
   // artifacts, we use it instead
   const fs = middleware.fileSystem;
 
-  app.get('/', (req, res) => {
+  app.get('/user', user.getUser);
+
+  app.post('/sendLoginInfo', (req, res) => {
+    user.checkUser(req.body, res);
+  });
+
+  app.get('*', (req, res) => {
     fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
       if (err) {
         res.sendStatus(404);

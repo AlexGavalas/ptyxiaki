@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import HomePage from 'containers/HomePage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-import Login from 'components/Login';
+import Login from 'containers/Login';
 
 import { fetchUserInfo } from './actions';
 

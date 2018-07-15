@@ -19,6 +19,4 @@ app.use(session({
   saveUninitialized: true,
 }));
 
-app.get('/user', user.getUser);
-
 app.listen(port);
