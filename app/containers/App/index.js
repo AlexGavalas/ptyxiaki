@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import { Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import HomePage from 'containers/HomePage/Loadable';
+import HomePage from 'containers/HomePage';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import Login from 'containers/Login';

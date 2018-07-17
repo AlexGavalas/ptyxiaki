@@ -2,19 +2,25 @@ const MongoClient = require('mongodb').MongoClient;
 
 const state = { db: null };
 
-const connect = (url) => {
-  if (state.db) return state.db;
+const connect = (url, done) => {
+  if (state.db) done();
 
-  return MongoClient.connect(url, (err, client) => {
-    if (err) {
-      console.log('ERROR');
-      return null;
-    }
-
+  MongoClient.connect(url, (err, client) => {
+    if (err) done(err);
     state.db = client.db('myDB');
-
-    return state.db;
+    done();
   });
 };
 
-module.exports = { connect };
+const close = (done) => {
+  if (state.db) {
+    state.db.close((err) => {
+      state.db = null;
+      done(err);
+    });
+  }
+};
+
+const get = () => state.db;
+
+module.exports = { connect, get, close };

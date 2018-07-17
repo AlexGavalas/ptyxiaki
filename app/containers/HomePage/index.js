@@ -8,7 +8,6 @@ import { Jumbotron, Button } from 'react-bootstrap';
 
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import { fetchUserInfo } from './actions';
@@ -45,9 +44,7 @@ HomePage.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({ dispatch });
 
-const mapStateToProps = createStructuredSelector({
-  username: makeSelectUsername(),
-});
+const mapStateToProps = createStructuredSelector({ });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 const withReducer = injectReducer({ key: 'home', reducer });

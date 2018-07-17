@@ -1,22 +1,16 @@
-import { fromJS } from 'immutable';
+// import {
+//
+// } from './constants';
 
-import {
-  CHANGE_USERNAME,
-} from './constants';
-
-const initialState = fromJS({
+const initialState = {
   username: '',
-});
+};
 
-function homeReducer(state = initialState, action) {
+const homeReducer = (state = initialState, action) => {
   switch (action.type) {
-    case CHANGE_USERNAME:
-
-      return state
-        .set('username', action.name.replace(/@/gi, ''));
     default:
       return state;
   }
-}
+};
 
 export default homeReducer;

@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'react-router';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
 class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
@@ -17,7 +16,7 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
               Help
             </NavItem>
             <NavItem eventKey={2} href="/login">
-              Link
+              Login
             </NavItem>
             <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
               <MenuItem eventKey={3.1}>Action</MenuItem>
