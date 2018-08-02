@@ -1,5 +1,6 @@
-// import {
-// } from './constants';
+import {
+  FETCH_USER_INFO
+} from './constants';
 
 // The initial state of the App
 const initialState = {
@@ -8,6 +9,11 @@ const initialState = {
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
+    case FETCH_USER_INFO:
+      return {
+        ...state,
+        user: 'ALEX'
+      };
     default:
       return state;
   }

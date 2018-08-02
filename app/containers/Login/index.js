@@ -1,62 +1,69 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import "./login.css";
-export default class Login extends Component {
-  constructor(props) {
-    super(props);
+import './Login.css';
+import './bootstrap.min.css';
+import Image from 'react-image';
+import logo from './logo.png';
 
-    this.state = {
-      email: "",
-      password: ""
-    };
+
+class Login extends Component {
+
+  state = {
+    username: '',
+    password: ''
   }
 
-  validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0;
+  handleInput = () => {
+    this.setState( { username: this.username.value });
+    this.setState( { password: this.password.value });
+  //  console.log(this.state.password);
+  //  console.log(this.state.username);
   }
 
-  handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  }
-
-  handleSubmit = event => {
-    event.preventDefault();
+  handleSubmit = (e) => {
+    e.preventDefault();
+    window.location = '/home';
   }
 
   render() {
     return (
-      <div className="Login">
-        <form onSubmit={this.handleSubmit}>
-          <FormGroup controlId="email" bsSize="large">
-            <ControlLabel>Email</ControlLabel>
-            <FormControl
-              autoFocus
-              type="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-          </FormGroup>
-          <FormGroup controlId="password" bsSize="large">
-            <ControlLabel>Password</ControlLabel>
-            <FormControl
-              value={this.state.password}
-              onChange={this.handleChange}
-              type="password"
-            />
-          </FormGroup>
-          <Button
-            block
-            bsSize="large"
-            disabled={!this.validateForm()}
-            type="submit"
-          >
-            Login
-          </Button>
-        </form>
-      </div>
+      <div>
+        <Image src={logo} style = {{position: 'relative', left: 200 }} />
+
+        <div className="Login">
+
+          <form onChange = {this.handleInput} onSubmit={this.handleSubmit}>
+            <FormGroup controlId="username" bsSize="large">
+              <ControlLabel>Username</ControlLabel>
+              <FormControl
+                inputRef={(username) => { this.username = username; }}
+                autoFocus
+                type="text"
+                value={this.state.username}
+              />
+            </FormGroup>
+            <FormGroup controlId="password" bsSize="large">
+              <ControlLabel>Password</ControlLabel>
+              <FormControl
+                inputRef={(pass) => { this.password = pass; }}
+                value={this.state.password}
+                type="password"
+              />
+            </FormGroup>
+            <Button
+              block
+              bsSize="large"
+              type="submit"
+            >
+              Login
+            </Button>
+          </form>
+          </div>
+        </div>
+
+
     );
   }
 }
 
+export default Login;
