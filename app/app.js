@@ -17,18 +17,11 @@ const store = configureStore(initialState, history);
 const dispatch = store.dispatch;
 const MOUNT_NODE = document.getElementById('app');
 
-const App = () => {
-  return (
-    <div>
-      <Home />
-    </div>
-    );
-}
 
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <App dispatch={dispatch} />
+      <Home dispatch={dispatch} />
     </ConnectedRouter>
   </Provider>,
   MOUNT_NODE

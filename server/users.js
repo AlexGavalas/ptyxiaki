@@ -12,7 +12,6 @@ const getUser = (req, res) => {
         res.json({ error: true });
       }
 
-      res.json(doc);
     });
   } else res.json({ error: true });
 };

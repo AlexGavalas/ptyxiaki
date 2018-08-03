@@ -3,6 +3,7 @@ import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
+import saga from 'containers/Login/saga';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -20,6 +21,7 @@ export default function configureStore(initialState = {}, history) {
   ];
 
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
+  /* eslint-disable no-underscore-dangle */
   const composeEnhancers =
     process.env.NODE_ENV !== 'production' &&
     typeof window === 'object' &&
@@ -30,6 +32,7 @@ export default function configureStore(initialState = {}, history) {
         shouldHotReload: false,
       })
       : compose;
+  /* eslint-enable */
 
   const store = createStore(
     createReducer(),
@@ -38,6 +41,7 @@ export default function configureStore(initialState = {}, history) {
   );
 
   // Extensions
+  sagaMiddleware.run(saga);
   store.runSaga = sagaMiddleware.run;
   store.injectedReducers = {}; // Reducer registry
   store.injectedSagas = {}; // Saga registry

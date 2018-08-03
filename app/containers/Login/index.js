@@ -4,6 +4,12 @@ import './Login.css';
 import './bootstrap.min.css';
 import Image from 'react-image';
 import logo from './logo.png';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+
+import { fetchUserInfo } from './actions';
+import { createStructuredSelector } from 'reselect';
+
 
 
 class Login extends Component {
@@ -20,9 +26,11 @@ class Login extends Component {
   //  console.log(this.state.username);
   }
 
+
   handleSubmit = (e) => {
     e.preventDefault();
-    window.location = '/home';
+    this.props.dispatch(fetchUserInfo()); // stelnei to Object
+    //window.location = '/home';
   }
 
   render() {
@@ -66,4 +74,10 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => ({ dispatch });
+const mapStateToProps = createStructuredSelector({ });
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+export default compose(
+  withConnect,
+)(Login);

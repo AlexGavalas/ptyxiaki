@@ -28,7 +28,9 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
   // artifacts, we use it instead
   const fs = middleware.fileSystem;
 
-  app.get('/user', user.getUser);
+  app.get('/user', (req,res) => {
+    user.getUser(req,res);
+  });
 
   app.post('/sendLoginInfo', (req, res) => {
     user.checkUser(req.body, res);
