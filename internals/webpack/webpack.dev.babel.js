@@ -9,7 +9,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
-const logger = require('../../server/logger');
 const pkg = require(path.resolve(process.cwd(), 'package.json'));
 const dllPlugin = pkg.dllPlugin;
 
@@ -52,7 +51,7 @@ module.exports = require('./webpack.base.babel')({
   },
 
   // Add development plugins
-  plugins: dependencyHandlers().concat(plugins), // eslint-disable-line no-use-before-define
+  plugins: dependencyHandlers().concat(plugins),
 
   // Emit a source map for easier debugging
   // See https://webpack.js.org/configuration/devtool/#devtool
@@ -98,14 +97,14 @@ function dependencyHandlers() {
     const manifestPath = path.resolve(dllPath, 'reactBoilerplateDeps.json');
 
     if (!fs.existsSync(manifestPath)) {
-      logger.error('The DLL manifest is missing. Please run `npm run build:dll`');
+      console.log('The DLL manifest is missing. Please run `npm run build:dll`');
       process.exit(0);
     }
 
     return [
       new webpack.DllReferencePlugin({
         context: process.cwd(),
-        manifest: require(manifestPath), // eslint-disable-line global-require
+        manifest: require(manifestPath),
       }),
     ];
   }
@@ -116,9 +115,9 @@ function dependencyHandlers() {
   return dllManifests.map((manifestPath) => {
     if (!fs.existsSync(path)) {
       if (!fs.existsSync(manifestPath)) {
-        logger.error(`The following Webpack DLL manifest is missing: ${path.basename(manifestPath)}`);
-        logger.error(`Expected to find it in ${dllPath}`);
-        logger.error('Please run: npm run build:dll');
+        console.log(`The following Webpack DLL manifest is missing: ${path.basename(manifestPath)}`);
+        console.log(`Expected to find it in ${dllPath}`);
+        console.log('Please run: npm run build:dll');
 
         process.exit(0);
       }
@@ -126,7 +125,7 @@ function dependencyHandlers() {
 
     return new webpack.DllReferencePlugin({
       context: process.cwd(),
-      manifest: require(manifestPath), // eslint-disable-line global-require
+      manifest: require(manifestPath),
     });
   });
 }
