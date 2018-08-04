@@ -28,13 +28,10 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
   // artifacts, we use it instead
   const fs = middleware.fileSystem;
 
-  app.get('/user', (req,res) => {
-    user.getUser(req,res);
+  app.post('/user', (req,res) => {
+      user.getUser(req,res);
   });
 
-  app.post('/sendLoginInfo', (req, res) => {
-    user.checkUser(req.body, res);
-  });
 
   app.get('*', (req, res) => {
     fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {

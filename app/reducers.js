@@ -2,6 +2,7 @@ import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
+import loginReducer from 'containers/Login/reducer';
 import globalReducer from 'containers/App/reducer';
 
 // Initial routing state
@@ -25,6 +26,7 @@ export default function createReducer(injectedReducers) {
   return combineReducers({
     route: routeReducer,
     global: globalReducer,
+    login: loginReducer,
     ...injectedReducers,
   });
 }

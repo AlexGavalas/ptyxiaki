@@ -1,2 +1,2 @@
 export const FETCH_USER_INFO = 'FETCH_USER_INFO';
-export const SEND_LOGIN_INFO = 'SEND_LOGIN_INFO';
+export const SET_USER_INFO = 'SEND_LOGIN_INFO';

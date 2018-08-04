@@ -29,8 +29,8 @@ class Login extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.dispatch(fetchUserInfo()); // stelnei to Object
-    //window.location = '/home';
+    this.props.dispatch(fetchUserInfo({username: this.username.value,password: this.password.value})); // stelnei to Object
+    window.location = '/home';
   }
 
   render() {
