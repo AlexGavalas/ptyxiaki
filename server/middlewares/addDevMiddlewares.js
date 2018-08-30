@@ -3,6 +3,9 @@ const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const passport = require('passport');
+const Strategy = require('passport-local').Strategy;
 const user = require('../users');
 
 function createWebpackMiddleware(compiler, publicPath) {
@@ -21,25 +24,59 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
 
+  app.use(session({
+    secret: 'TSAIEMCIAO',
+    cookie: { maxAge: 60000 * 60 * 2 },
+    resave: false,
+    saveUninitialized: false,
+  }));
+
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
+
+  app.use(passport.initialize());
+  app.use(passport.session());
 
   // Since webpackDevMiddleware uses memory-fs internally to store build
   // artifacts, we use it instead
   const fs = middleware.fileSystem;
 
-  app.post('/user', (req,res) => {
-      user.getUser(req,res);
+  passport.serializeUser((user, done) => done(null, user));
+  passport.deserializeUser((user, done) => done(null, user));
+
+  passport.use('local', new Strategy((username, password, done) => {
+    user.getUser({ username, password }, (err, user) => {
+      if (err) return done(err);
+      if (!user) return done(null, false);
+      return done(null, user);
+    })
+  }));
+
+  app.get('/user', (req, res) => res.json(req.user));
+
+  app.post('/login', passport.authenticate('local', { successRedirect: '/' }));
+
+  app.get('/logout', (req, res) => {
+
+    for (let cookie in req.cookies) res.clearCookie(cookie);
+
+    req.logout();
+
+    res.redirect('/');
   });
 
-
   app.get('*', (req, res) => {
-    fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
-      if (err) {
-        res.sendStatus(404);
-      } else {
-        res.send(file.toString());
-      }
-    });
+
+    if (req.user) {
+
+      fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
+
+        if (err) res.sendStatus(404);
+
+        else res.send(file.toString());
+      });
+    }
+
+    else res.redirect('/');
   });
 };

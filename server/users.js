@@ -1,22 +1,24 @@
 const db = require('./db');
 
+const getUser = (credentials, cb) => {
 
-const getUser = (req, res) => {
   const database = db.get();
-  const userData = req.body;
-  userData.password = +userData.password;
+
+  credentials.password = +credentials.password;
 
   if (database) {
+
     const users = database.collection('users');
 
-    users.find(userData).toArray((error, doc) => {
-      if (error || doc.length === 0) {
-        console.log('ERROR');
-        res.json({ error: true });
-      }
-      else res.json({user: userData,error: false});
+    users.find(credentials).toArray((error, doc) => {
+
+      if (error || doc.length === 0) cb(true);
+
+      else cb(false, doc[0]);
     });
-  } else res.json({ error: true });
+  }
+
+  else cb(true);
 };
 
 module.exports = { getUser };

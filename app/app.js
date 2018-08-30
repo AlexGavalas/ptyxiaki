@@ -6,17 +6,17 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
+
 import Home from 'containers/Home';
 import './index.css';
+import './bootstrap.min.css';
 import configureStore from './configureStore';
 
-// Create redux store with history
 const initialState = {};
 const history = createHistory();
 const store = configureStore(initialState, history);
 const dispatch = store.dispatch;
 const MOUNT_NODE = document.getElementById('app');
-
 
 ReactDOM.render(
   <Provider store={store}>

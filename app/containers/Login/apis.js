@@ -1,5 +1,9 @@
 import axios from 'axios';
 
-export function fetchUserInfo(data) {
-  return axios.post('/user',data);
+export function authenticateUser(data) {
+  return axios.post('/login', data);
+}
+
+export function fetchUserInfo() {
+  return axios.get('/user');
 }

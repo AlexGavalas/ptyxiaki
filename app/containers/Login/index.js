@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import './Login.css';
-import './bootstrap.min.css';
 import Image from 'react-image';
-import logo from './logo.png';
+import logo from 'images/logo.png';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import { fetchUserInfo } from './actions';
+import { authenticateUser } from './actions';
 import { createStructuredSelector } from 'reselect';
-
-
 
 class Login extends Component {
 
@@ -20,29 +17,27 @@ class Login extends Component {
   }
 
   handleInput = () => {
-    this.setState( { username: this.username.value });
-    this.setState( { password: this.password.value });
-  //  console.log(this.state.password);
-  //  console.log(this.state.username);
+    this.setState({
+      username: this.username.value,
+      password: this.password.value,
+    });
   }
-
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.dispatch(fetchUserInfo({username: this.username.value,password: this.password.value})); // stelnei to Object
-    window.location = '/home';
+    this.props.dispatch(authenticateUser(this.state));
   }
 
   render() {
     return (
       <div>
         <Image src={logo} style = {{position: 'relative', left: 200 }} />
-
         <div className="Login">
-
           <form onChange = {this.handleInput} onSubmit={this.handleSubmit}>
             <FormGroup controlId="username" bsSize="large">
-              <ControlLabel>Username</ControlLabel>
+              <ControlLabel>
+                Username
+              </ControlLabel>
               <FormControl
                 inputRef={(username) => { this.username = username; }}
                 autoFocus
@@ -61,22 +56,19 @@ class Login extends Component {
             <Button
               block
               bsSize="large"
-              type="submit"
-            >
-              Login
+              type="submit">
+                Login
             </Button>
           </form>
-          </div>
         </div>
-
-
+      </div>
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => ({ dispatch });
-const mapStateToProps = createStructuredSelector({ });
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+const withConnect = connect(mapDispatchToProps);
 
 export default compose(
   withConnect,

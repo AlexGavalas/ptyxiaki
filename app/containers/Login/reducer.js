@@ -1,18 +1,17 @@
-// import {
-//
-// } from './constants';
+import {
+  SET_USER_INFO,
+} from './constants';
 
 const initialState = {
-  username: '',
-  password: '',
+  username: null
 };
 
-const loginReducer = (state = initialState, action) => {
+function loginReducer(state = initialState, action) {
   switch (action.type) {
-    case 'SET_USER_INFO':
+    case SET_USER_INFO:
       return {
         ...state,
-        username: action.user.username,
+        username: action.data.username,
       };
     default:
       return state;
