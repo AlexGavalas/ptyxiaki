@@ -11,6 +11,9 @@ import { createStructuredSelector } from 'reselect';
 
 import Login from '../Login/index';
 import Header from '../Header/index';
+import Panel from '../Admin/index';
+import CreateCourse from '../CreateCourse/index';
+import CreateCurriculum from '../CreateCurriculum/index';
 import { selectUser } from './selectors';
 import { fetchUserInfo } from '../Login/actions';
 
@@ -23,17 +26,19 @@ class Home extends React.Component {
 
   render() {
 
-    const isLoggedIn = this.props.user ? true : false;
+    const { user } = this.props;
 
-    return isLoggedIn ? (
+    return user === undefined ? (
+      <Login />
+    ) : (
       <Router>
         <Switch>
-          <Route exact path="/" component={Header} />
-          <Route exact path="/home" component={Header} />
+          <Route exact path="/" component={Panel} />
+          <Route exact path="/home" component={Panel} />
+          <Route exact path="/createCurriculum" component={CreateCurriculum} />
+          <Route exact path="/createCourse" component={CreateCourse} />
         </Switch>
       </Router>
-    ) : (
-      <Login />
     );
   }
 }
