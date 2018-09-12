@@ -31,7 +31,7 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <Image src={logo} style = {{position: 'relative', left: 200 }} />
+        <Image src={logo} style = {{ position: 'relative', left: 200 }} />
         <div className="Login">
           <form onChange = {this.handleInput} onSubmit={this.handleSubmit}>
             <FormGroup controlId="username" bsSize="large">

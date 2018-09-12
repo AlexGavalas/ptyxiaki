@@ -21,13 +21,7 @@ class Panel extends React.Component {
         </ButtonToolbar>
 
         <br />
-
-        <ListGroup>
-          <ListGroupItem>12</ListGroupItem>
-          <ListGroupItem>12</ListGroupItem>
-          <ListGroupItem>12</ListGroupItem>
-          <ListGroupItem>12</ListGroupItem>
-        </ListGroup>
+        
       </div>
     );
   }

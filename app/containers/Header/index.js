@@ -14,20 +14,20 @@ export default class Header extends React.PureComponent {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">ΚΟΥΜΑΝΤΟ ΜΟΝΟ ΕΜΕΙΣ ΕΔΩ</NavbarBrand>
+          <NavbarBrand href="/">ΚΕΝΤΡΙΚΗ</NavbarBrand>
           <Collapse navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/home">ΕΜΠΟΡΙΟ ΟΡΓΑΝΩΝ</NavLink>
+                <NavLink href="/home">HOME</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/">ΕΜΠΟΡΙΟ ΟΠΛΩΝ</NavLink>
+                <NavLink href="/">LINK 1</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/">ΕΜΠΟΡΙΟ ΑΝΗΛΙΚΩΝ</NavLink>
+                <NavLink href="/">LINK 2</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/logout">ΤΡΕΧΑ</NavLink>
+                <NavLink href="/logout">LOGOUT</NavLink>
               </NavItem>
             </Nav>
           </Collapse>

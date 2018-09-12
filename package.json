@@ -89,8 +89,10 @@
     "reactstrap": "^6.3.1",
     "redux": "3.6.0",
     "redux-immutable": "4.0.0",
+    "redux-observable": "^1.0.0",
     "redux-saga": "0.15.3",
-    "reselect": "3.0.1"
+    "reselect": "3.0.1",
+    "rxjs": "^6.3.2"
   },
   "devDependencies": {
     "add-asset-html-webpack-plugin": "2.0.1",
