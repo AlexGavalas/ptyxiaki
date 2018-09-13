@@ -6,6 +6,7 @@ import { createEpicMiddleware } from 'redux-observable';
 
 import createReducer from './reducers';
 import saga from 'containers/Login/saga';
+import userSaga from 'containers/User/saga';
 import { rootEpic } from 'containers/Login/reactive';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -33,6 +34,7 @@ export default function configureStore(initialState = {}, history) {
 
   // Extensions
   sagaMiddleware.run(saga);
+  sagaMiddleware.run(userSaga);
   // epicMiddleware.run(rootEpic);
   store.runSaga = sagaMiddleware.run;
   store.injectedReducers = {}; // Reducer registry

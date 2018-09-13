@@ -4,8 +4,6 @@ const getUser = (credentials, cb) => {
 
   const database = db.get();
 
-  credentials.password = +credentials.password;
-
   if (database) {
 
     const users = database.collection('users');
@@ -21,4 +19,19 @@ const getUser = (credentials, cb) => {
   else cb(true);
 };
 
-module.exports = { getUser };
+const createUser = (data) => {
+
+  const database = db.get();
+
+  if (database) {
+
+    const users = database.collection('users');
+
+    users.insert(data, (error, doc) => {
+
+      if (error) console.log('ERROR');
+    });
+  }
+};
+
+module.exports = { getUser, createUser };

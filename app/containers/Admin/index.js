@@ -18,10 +18,11 @@ class Panel extends React.Component {
         <ButtonToolbar>
           <Button bsStyle="primary" bsSize="large" href="/createCurriculum">Δημηιουργία Νέου Προγραμματος Σπουδών</Button>
           <Button bsStyle="primary" bsSize="large" href="/createCourse">Δημηιουργία Νέου Μαθήματος</Button>
+          <Button bsStyle="primary" bsSize="large" href="/createUser">Δημηιουργία Νέου Χρήστη</Button>
         </ButtonToolbar>
 
         <br />
-        
+
       </div>
     );
   }

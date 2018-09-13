@@ -54,6 +54,8 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
 
   app.get('/user', (req, res) => res.json(req.user));
 
+  app.post('/createUser', (req, res) => user.createUser(req.body));
+
   app.post('/login', passport.authenticate('local', { successRedirect: '/' }));
 
   app.get('/logout', (req, res) => {

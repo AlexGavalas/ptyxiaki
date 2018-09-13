@@ -9,9 +9,10 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import Login from '../Login/index';
-import Header from '../Header/index';
-import Panel from '../Admin/index';
+import Login from '../Login';
+import Header from '../Header';
+import Panel from '../Admin';
+import createUser from '../User';
 import CreateCourse from '../CreateCourse/index';
 import CreateCurriculum from '../CreateCurriculum/index';
 import { selectUser } from './selectors';
@@ -37,6 +38,7 @@ class Home extends React.Component {
           <Route exact path="/home" component={Panel} />
           <Route exact path="/createCurriculum" component={CreateCurriculum} />
           <Route exact path="/createCourse" component={CreateCourse} />
+          <Route exact path="/createUser" component={createUser} />
         </Switch>
       </Router>
     );
