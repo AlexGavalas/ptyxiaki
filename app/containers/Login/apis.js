@@ -7,3 +7,7 @@ export function authenticateUser(data) {
 export function fetchUserInfo() {
   return axios.get('/user');
 }
+
+export function fetchAllUsers() {
+  return axios.get('/allUsers');
+}

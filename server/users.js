@@ -34,4 +34,53 @@ const createUser = (data) => {
   }
 };
 
-module.exports = { getUser, createUser };
+const getAllUsers = (req, res) => {
+
+  const database = db.get();
+
+  if (database) {
+
+    const users = database.collection('users');
+
+    users.find({}).toArray((error, docs) => {
+
+      if (error) console.log('ERROR');
+
+      else {
+
+        docs.forEach((doc) => {
+          delete doc._id;
+          delete doc.originalUsername;
+        });
+
+        res.json(docs);
+      }
+    });
+  }
+};
+
+const updateUser = (user) => {
+
+  const database = db.get();
+
+  if (database) {
+
+      const users = database.collection('users');
+
+      users.update({ username: user.originalUsername }, user);
+  }
+};
+
+const deleteUser = (data) => {
+
+  const database = db.get();
+
+  if (database) {
+
+      const users = database.collection('users');
+
+      users.remove({ username: data.data });
+  }
+};
+
+module.exports = { getUser, createUser, getAllUsers, updateUser, deleteUser };

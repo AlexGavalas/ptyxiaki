@@ -13,6 +13,7 @@ import Login from '../Login';
 import Header from '../Header';
 import Panel from '../Admin';
 import createUser from '../User';
+import editUser from '../editUser';
 import CreateCourse from '../CreateCourse/index';
 import CreateCurriculum from '../CreateCurriculum/index';
 import { selectUser } from './selectors';
@@ -39,6 +40,7 @@ class Home extends React.Component {
           <Route exact path="/createCurriculum" component={CreateCurriculum} />
           <Route exact path="/createCourse" component={CreateCourse} />
           <Route exact path="/createUser" component={createUser} />
+          <Route exact path="/editUser" component={editUser} />
         </Switch>
       </Router>
     );

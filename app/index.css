@@ -8,4 +8,15 @@
     max-width: 420px;
   }
 
+  .modal {
+    display: block;
+  }
+
+  .modal-dialog {
+    display: block;
+  }
+
+  .fade {
+    opacity: 1 !important;
+  }
 }

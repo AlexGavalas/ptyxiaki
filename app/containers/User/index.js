@@ -3,14 +3,33 @@ import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+import PropTypes from 'prop-types';
 
 import Header from '../Header';
-import { postUser } from './actions';
+import { postUser, updateUser, deleteUser } from './actions';
+import { addUserToEdit } from '../editUser/actions';
+import { selectNewUser } from './selectors';
 
 class createUser extends React.Component {
 
+  static propTypes = {
+    newUser: PropTypes.object,
+  }
+
   state = {
 
+  }
+
+  componentDidMount() {
+
+    if (this.props.newUser) {
+
+      const { newUser } = this.props;
+
+      newUser.originalUsername = newUser.username;
+
+      this.setState(newUser);
+    }
   }
 
   handleInput = (event) => {
@@ -24,7 +43,25 @@ class createUser extends React.Component {
 
     e.preventDefault();
 
-    this.props.dispatch(postUser(this.state));
+    if (!this.props.newUser) this.props.dispatch(postUser(this.state));
+
+    else {
+
+      this.props.dispatch(updateUser(this.state));
+
+      this.props.dispatch(addUserToEdit(null));
+    }
+
+    this.props.history.push('/editUser');
+  }
+
+  deleteUser = (e) => {
+
+    e.preventDefault();
+
+    this.props.dispatch(deleteUser(this.state.originalUsername));
+
+    this.props.history.push('/editUser');
   }
 
   render() {
@@ -40,7 +77,7 @@ class createUser extends React.Component {
     return (
       <div>
         <Header />
-        <h1>Δημιουργία Νέου Χρήστη</h1>
+        <h1>{this.props.newUser ? 'Επεξεργασία Χρήστη' : 'Δημιουργία Νέου Χρήστη'}</h1>
         <div className="Login">
           <form onChange={this.handleInput} onSubmit={this.handleSubmit}>
             {Object.keys(fields).map((field, i) => (
@@ -53,9 +90,18 @@ class createUser extends React.Component {
                 />
               </FormGroup>
             ))}
+            {this.props.newUser &&
+              <Button
+                block
+                bsSize="large"
+                bsStyle="danger"
+                onClick={this.deleteUser}>
+                  Διαγραφή
+              </Button>}
             <Button
               block
               bsSize="large"
+              bsStyle="primary"
               type="submit">
                 Καταχώρηση
             </Button>
@@ -68,7 +114,11 @@ class createUser extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({ dispatch });
 
-const withConnect = connect(mapDispatchToProps);
+const mapStateToProps = () => createStructuredSelector({
+  newUser: selectNewUser
+});
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(
   withConnect,
