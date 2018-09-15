@@ -2,12 +2,14 @@ import {
   SET_USER_INFO,
   SET_ALL_USERS,
   ADD_USER_TO_EDIT,
+  SET_ALL_COURSES,
 } from 'common/constants';
 
 const initialState = {
   username: null,
   users: null,
   newUser: null,
+  courses: null,
 };
 
 function reducer(state = initialState, action) {
@@ -30,6 +32,12 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         newUser: action.user,
+      };
+
+    case SET_ALL_COURSES:
+      return {
+        ...state,
+        courses: action.data,
       };
 
     default:

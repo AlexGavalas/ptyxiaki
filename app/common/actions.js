@@ -1,9 +1,5 @@
 import * as C from 'common/constants';
 
-// Create curriculum
-
-export const createCurriculum = (name) => ({ type: C.CREATE_CURRICULUM, name });
-
 // Edit User
 
 export const fetchAllUsers = () => ({ type: C.FETCH_ALL_USERS });
@@ -27,3 +23,13 @@ export const postUser = (data) => ({ type: C.CREATE_USER, data });
 export const updateUser = (user) => ({ type: C.UPDATE_USER, user });
 
 export const deleteUser = (username) => ({ type: C.DELETE_USER, username });
+
+// Curriculum
+
+export const createCurriculum = (data) => ({ type: C.CREATE_CURRICULUM, data });
+
+// Courses
+
+export const getAllCourses = () => ({ type: C.GET_ALL_COURSES });
+
+export const setAllCourses = (data) => ({ type: C.SET_ALL_COURSES, data });

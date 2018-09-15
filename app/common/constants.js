@@ -15,3 +15,7 @@ export const DELETE_USER = 'DELETE_USER';
 
 // Curriculum
 export const CREATE_CURRICULUM = 'CREATE_CURRICULUM';
+
+// Courses
+export const GET_ALL_COURSES = 'GET_ALL_COURSES';
+export const SET_ALL_COURSES = 'SET_ALL_COURSES';

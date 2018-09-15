@@ -16,6 +16,7 @@ import createUser from '../User';
 import editUser from '../editUser';
 import CreateCourse from '../CreateCourse';
 import CreateCurriculum from '../CreateCurriculum';
+import AllCourses from '../AllCourses';
 
 import { selectUser } from 'common/selectors';
 import { fetchUserInfo } from 'common/actions';
@@ -44,6 +45,7 @@ class Home extends React.Component {
             <Route exact path="/createCourse" component={CreateCourse} />
             <Route exact path="/createUser" component={createUser} />
             <Route exact path="/editUser" component={editUser} />
+            <Route exact path="/courses" component={AllCourses} />
           </Switch>
         </Router>
         </div>
@@ -59,6 +61,4 @@ const mapStateToProps = createStructuredSelector({
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-)(Home);
+export default compose(withConnect)(Home);

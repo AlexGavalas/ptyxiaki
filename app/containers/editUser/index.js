@@ -15,14 +15,12 @@ class EditUser extends React.Component {
     dispatch: PropTypes.func,
   }
 
-  state = {}
-
   componentDidMount() {
 
     this.props.dispatch(fetchAllUsers());
   }
 
-  openModal = (user) => {
+  goToEdit = (user) => {
 
     this.props.dispatch(addUserToEdit(user));
 
@@ -47,7 +45,7 @@ class EditUser extends React.Component {
           </thead>
           <tbody>
             {users.map((user) => (
-              <tr onClick={() => this.openModal(user)} key={user.username}>
+              <tr onClick={() => this.goToEdit(user)} key={user.username}>
                 {Object.keys(user).map((key, i) => (<td key={user.username + i}>{user[key]}</td>))}
               </tr>
             ))}

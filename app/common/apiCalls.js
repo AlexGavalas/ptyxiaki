@@ -15,3 +15,11 @@ export const createUser = (data) => axios.post('/createUser', data);
 export const updateUser = (data) => axios.post('/updateUser', data);
 
 export const deleteUser = (username) => axios.post('/deleteUser', { data: username });
+
+// Curriculum calls
+
+export const createCurriculum = (data) => axios.post('/createCurriculum', data);
+
+// Courses
+
+export const getAllCourses = () => axios.get('/getAllCourses');

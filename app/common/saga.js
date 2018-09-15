@@ -1,8 +1,8 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import * as api from 'common/apiCalls';
-import { AUTH_USER, FETCH_USER_INFO, FETCH_ALL_USERS, CREATE_USER, UPDATE_USER, DELETE_USER } from 'common/constants';
-import { fetchUserInfo, setUserInfo, setAllUsers } from 'common/actions';
+import * as C from 'common/constants';
+import { fetchUserInfo, setUserInfo, setAllUsers, setAllCourses } from 'common/actions';
 
 function * authenticateUser(args) {
 
@@ -43,11 +43,27 @@ function * deleteUser(action) {
   yield call(api.deleteUser, action.username);
 }
 
+function * createCurriculum(action) {
+  yield call(api.createCurriculum, action.data);
+}
+
+function * getAllCourses() {
+
+  const response = yield call(api.getAllCourses);
+
+  if (!response.data.error) {
+
+    yield put(setAllCourses(response.data));
+  }
+}
+
 export default function* watcher() {
-  yield takeLatest([AUTH_USER], authenticateUser);
-  yield takeLatest([FETCH_USER_INFO], setUser);
-  yield takeLatest([FETCH_ALL_USERS], fetchAllUsers);
-  yield takeLatest([CREATE_USER], createUser);
-  yield takeLatest([UPDATE_USER], updateUser);
-  yield takeLatest([DELETE_USER], deleteUser);
+  yield takeLatest([C.AUTH_USER], authenticateUser);
+  yield takeLatest([C.FETCH_USER_INFO], setUser);
+  yield takeLatest([C.FETCH_ALL_USERS], fetchAllUsers);
+  yield takeLatest([C.CREATE_USER], createUser);
+  yield takeLatest([C.UPDATE_USER], updateUser);
+  yield takeLatest([C.DELETE_USER], deleteUser);
+  yield takeLatest([C.CREATE_CURRICULUM], createCurriculum);
+  yield takeLatest([C.GET_ALL_COURSES], getAllCourses);
 }

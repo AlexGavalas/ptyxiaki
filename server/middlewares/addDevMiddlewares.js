@@ -7,6 +7,7 @@ const session = require('express-session');
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const user = require('../users');
+const courses = require('../courses');
 
 function createWebpackMiddleware(compiler, publicPath) {
   return webpackDevMiddleware(compiler, {
@@ -63,6 +64,8 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
   app.post('/login', passport.authenticate('local', { successRedirect: '/' }));
 
   app.get('/allUsers', user.getAllUsers);
+
+  app.get('/getAllCourses', courses.getAllCourses);
 
   app.get('/logout', (req, res) => {
 

@@ -5,9 +5,7 @@ import { createCurriculum } from 'common/actions';
 
 class CreateCurriculum extends React.Component {
 
-  state = {
-    title: '',
-  }
+  state = { title: '' };
 
   handleInput = () => this.setState({ title: this.title.value });
 
@@ -36,7 +34,7 @@ class CreateCurriculum extends React.Component {
               />
             </FormGroup>
             <Button
-              href="/createCourse"
+              href="/courses"
               block
               bsSize="large"
               bsStyle="primary"
