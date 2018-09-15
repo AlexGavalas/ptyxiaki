@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import './Login.css';
 import Image from 'react-image';
-import logo from 'images/logo.png';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
+import logo from 'images/logo.png';
+import 'styles/Login.css';
 import { authenticateUser } from 'common/actions';
 
 class Login extends Component {

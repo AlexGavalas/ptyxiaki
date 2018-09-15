@@ -8,8 +8,8 @@ import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 
 import Home from 'containers/Home';
-import './index.css';
-import './bootstrap.min.css';
+import 'styles/index.css';
+import 'styles/bootstrap.min.css';
 import configureStore from './configureStore';
 
 const initialState = {};
