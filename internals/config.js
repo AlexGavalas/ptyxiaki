@@ -23,7 +23,6 @@ const ReactBoilerplate = {
         'compression',
         'cross-env',
         'express',
-        'ip'
       ],
 
       /**
