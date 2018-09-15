@@ -5,10 +5,8 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 
-import Header from '../Header';
-import { postUser, updateUser, deleteUser } from './actions';
-import { addUserToEdit } from '../editUser/actions';
-import { selectNewUser } from './selectors';
+import { postUser, updateUser, deleteUser, addUserToEdit } from 'common/actions';
+import { selectNewUser } from 'common/selectors';
 
 class createUser extends React.Component {
 
@@ -76,7 +74,6 @@ class createUser extends React.Component {
 
     return (
       <div>
-        <Header />
         <h1>{this.props.newUser ? 'Επεξεργασία Χρήστη' : 'Δημιουργία Νέου Χρήστη'}</h1>
         <div className="Login">
           <form onChange={this.handleInput} onSubmit={this.handleSubmit}>

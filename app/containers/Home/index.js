@@ -14,10 +14,11 @@ import Header from '../Header';
 import Panel from '../Admin';
 import createUser from '../User';
 import editUser from '../editUser';
-import CreateCourse from '../CreateCourse/index';
-import CreateCurriculum from '../CreateCurriculum/index';
-import { selectUser } from './selectors';
-import { fetchUserInfo } from '../Login/actions';
+import CreateCourse from '../CreateCourse';
+import CreateCurriculum from '../CreateCurriculum';
+
+import { selectUser } from 'common/selectors';
+import { fetchUserInfo } from 'common/actions';
 
 class Home extends React.Component {
 
@@ -30,19 +31,22 @@ class Home extends React.Component {
 
     const { user } = this.props;
 
-    return user === undefined ? (
+    return user == null ? (
       <Login />
     ) : (
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Panel} />
-          <Route exact path="/home" component={Panel} />
-          <Route exact path="/createCurriculum" component={CreateCurriculum} />
-          <Route exact path="/createCourse" component={CreateCourse} />
-          <Route exact path="/createUser" component={createUser} />
-          <Route exact path="/editUser" component={editUser} />
-        </Switch>
-      </Router>
+      <div>
+        <Header />
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Panel} />
+            <Route exact path="/home" component={Panel} />
+            <Route exact path="/createCurriculum" component={CreateCurriculum} />
+            <Route exact path="/createCourse" component={CreateCourse} />
+            <Route exact path="/createUser" component={createUser} />
+            <Route exact path="/editUser" component={editUser} />
+          </Switch>
+        </Router>
+        </div>
     );
   }
 }

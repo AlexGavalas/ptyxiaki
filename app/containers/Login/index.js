@@ -6,8 +6,7 @@ import logo from 'images/logo.png';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import { authenticateUser } from './actions';
-import { createStructuredSelector } from 'reselect';
+import { authenticateUser } from 'common/actions';
 
 class Login extends Component {
 
@@ -24,7 +23,9 @@ class Login extends Component {
   }
 
   handleSubmit = (e) => {
+
     e.preventDefault();
+
     this.props.dispatch(authenticateUser(this.state));
   }
 

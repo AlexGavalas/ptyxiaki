@@ -3,29 +3,19 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
-import {
-  ListGroup,
-  ListGroupItem,
-  ButtonToolbar,
-  Button,
-  Table,
-  Modal,
-} from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 
-import Header from '../Header';
-import { fetchAllUsers, addUserToEdit } from './actions';
-import { makeSelectAllUsers, selectAllUsers } from './selectors';
+import { fetchAllUsers, addUserToEdit } from 'common/actions';
+import { selectAllUsers } from 'common/selectors';
 
-class editUser extends React.Component {
+class EditUser extends React.Component {
 
   static propTypes = {
     users: PropTypes.array,
     dispatch: PropTypes.func,
   }
 
-  state = {
-  }
+  state = {}
 
   componentDidMount() {
 
@@ -49,8 +39,6 @@ class editUser extends React.Component {
 
     return (
       <div>
-        <Header />
-
         <Table>
           <thead>
             <tr>
@@ -80,4 +68,4 @@ const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(
   withConnect,
-)(editUser);
+)(EditUser);

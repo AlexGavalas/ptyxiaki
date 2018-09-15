@@ -1,58 +1,47 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
-import Header from '../Header/index';
+import { createCurriculum } from 'common/actions';
 
 class CreateCurriculum extends React.Component {
 
   state = {
-    curriculum: '',
-    description: '',
+    title: '',
   }
 
-  handleInput = () => {
-    this.setState({
-      curriculum: this.curriculum.value,
-      description: this.description.value,
-    });
-  }
+  handleInput = () => this.setState({ title: this.title.value });
 
   handleSubmit = (e) => {
 
     e.preventDefault();
 
-    console.log(this.state);
+    this.props.dispatch(createCurriculum(this.state));
+
+    this.props.history.push('/courses');
   }
 
   render() {
 
     return (
       <div>
-        <Header />
         <h1>Δημιουργία Προγράμματος Σπουδών</h1>
-        <div>
+        <div className="Login">
           <form onChange = {this.handleInput} onSubmit={this.handleSubmit}>
             <FormGroup bsSize="large">
-              <ControlLabel>Όνομα Προγράμματος</ControlLabel>
+              <ControlLabel>Τίτλος Προγράμματος</ControlLabel>
               <FormControl
-                inputRef={(el) => { this.curriculum = el; }}
+                inputRef={(el) => { this.title = el; }}
                 autoFocus
-                value={this.state.curriculum}
-              />
-            </FormGroup>
-            <FormGroup bsSize="large">
-              <ControlLabel>Περιγραφή</ControlLabel>
-              <FormControl
-                inputRef={(el) => { this.description = el; }}
-                value={this.state.description}
+                value={this.state.title}
               />
             </FormGroup>
             <Button
               href="/createCourse"
               block
               bsSize="large"
+              bsStyle="primary"
               type="submit">
-                Επόμενο
+                Επιλογή Μαθημάτων
             </Button>
           </form>
         </div>

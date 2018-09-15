@@ -1,22 +1,5 @@
 import { combineReducers } from 'redux-immutable';
 
-import loginReducer from 'containers/Login/reducer';
+import reducer from 'common/reducer';
 
-// Initial routing state
-const routeInitialState = {};
-
-function routeReducer(state = routeInitialState, action) {
-  switch (action.type) {
-    default:
-      return state;
-  }
-}
-
-export default function createReducer(injectedReducers) {
-  return combineReducers({
-    user: loginReducer,
-    users: loginReducer,
-    newUser: loginReducer,
-    ...injectedReducers,
-  });
-}
+export const createReducer = () => combineReducers({ user: reducer });

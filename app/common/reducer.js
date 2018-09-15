@@ -1,11 +1,8 @@
 import {
   SET_USER_INFO,
-} from './constants';
-
-import {
   SET_ALL_USERS,
   ADD_USER_TO_EDIT,
-} from '../editUser/constants';
+} from 'common/constants';
 
 const initialState = {
   username: null,
@@ -13,7 +10,7 @@ const initialState = {
   newUser: null,
 };
 
-function loginReducer(state = initialState, action) {
+function reducer(state = initialState, action) {
 
   switch (action.type) {
 
@@ -40,4 +37,4 @@ function loginReducer(state = initialState, action) {
   }
 }
 
-export default loginReducer;
+export default reducer;

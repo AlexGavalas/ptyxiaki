@@ -6,7 +6,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
-import 'rxjs';
 
 import Home from 'containers/Home';
 import './index.css';
@@ -16,13 +15,12 @@ import configureStore from './configureStore';
 const initialState = {};
 const history = createHistory();
 const store = configureStore(initialState, history);
-const dispatch = store.dispatch;
 const MOUNT_NODE = document.getElementById('app');
 
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <Home dispatch={dispatch} />
+      <Home />
     </ConnectedRouter>
   </Provider>,
   MOUNT_NODE
