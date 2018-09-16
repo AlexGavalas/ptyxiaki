@@ -37,3 +37,5 @@ export const setAllCourses = (data) => ({ type: C.SET_ALL_COURSES, data });
 export const setCourse = (data) => ({ type: C.SET_COURSE, data });
 
 export const addCourseToEdit = (data) => ({ type: C.ADD_COURSE_TO_EDIT, data });
+
+export const setCoursesToName = (data) => ({ type: C.SET_COURSES_TO_NAME, data });

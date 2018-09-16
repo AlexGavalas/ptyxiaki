@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
 import { createCurriculum } from 'common/actions';
@@ -13,7 +15,7 @@ class CreateCurriculum extends React.Component {
 
     e.preventDefault();
 
-    this.props.dispatch(createCurriculum(this.state));
+    this.props.dispatch(createCurriculum(this.state.title));
 
     this.props.history.push('/courses');
   }
@@ -34,7 +36,6 @@ class CreateCurriculum extends React.Component {
               />
             </FormGroup>
             <Button
-              href="/courses"
               block
               bsSize="large"
               bsStyle="primary"
@@ -48,4 +49,8 @@ class CreateCurriculum extends React.Component {
   }
 }
 
-export default CreateCurriculum;
+const mapDispatchToProps = (dispatch) => ({ dispatch });
+
+const withConnect = connect(mapDispatchToProps);
+
+export default compose(withConnect)(CreateCurriculum);

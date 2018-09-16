@@ -41,6 +41,18 @@ function reducer(state = initialState, action) {
         courseToEdit: action.data,
       };
 
+    case C.CREATE_CURRICULUM:
+      return {
+        ...state,
+        curriculum: action.data,
+      };
+
+    case C.SET_COURSES_TO_NAME:
+      return {
+        ...state,
+        coursesToName: action.data,
+      };
+
     default:
       return state;
   }

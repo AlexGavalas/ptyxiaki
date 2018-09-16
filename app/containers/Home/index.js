@@ -17,6 +17,7 @@ import editUser from '../editUser';
 import CreateCourse from '../CreateCourse';
 import CreateCurriculum from '../CreateCurriculum';
 import AllCourses from '../AllCourses';
+import NameCourses from '../NameCourses';
 
 import { selectUser } from 'common/selectors';
 import { fetchUserInfo } from 'common/actions';
@@ -46,6 +47,7 @@ class Home extends React.Component {
             <Route exact path="/createUser" component={createUser} />
             <Route exact path="/editUser" component={editUser} />
             <Route exact path="/courses" component={AllCourses} />
+            <Route exact path="/nameCourses" component={NameCourses} />
           </Switch>
         </Router>
         </div>

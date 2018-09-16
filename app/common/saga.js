@@ -10,7 +10,7 @@ export default function * watcher () {
   yield takeLatest([C.CREATE_USER], GEN.createUser);
   yield takeLatest([C.UPDATE_USER], GEN.updateUser);
   yield takeLatest([C.DELETE_USER], GEN.deleteUser);
-  yield takeLatest([C.CREATE_CURRICULUM], GEN.createCurriculum);
+  // yield takeLatest([C.CREATE_CURRICULUM], GEN.createCurriculum);
   yield takeLatest([C.GET_ALL_COURSES], GEN.getAllCourses);
   yield takeLatest([C.SET_COURSE], GEN.setCourse);
 }

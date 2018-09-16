@@ -21,3 +21,4 @@ export const GET_ALL_COURSES = 'GET_ALL_COURSES';
 export const SET_ALL_COURSES = 'SET_ALL_COURSES';
 export const SET_COURSE = 'SET_COURSE';
 export const ADD_COURSE_TO_EDIT = 'ADD_COURSE_TO_EDIT';
+export const SET_COURSES_TO_NAME = 'SET_COURSES_TO_NAME';
