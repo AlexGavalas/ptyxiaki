@@ -5,3 +5,5 @@ export const selectUser = (state) => state.get('user').username;
 export const selectNewUser = (state) => state.get('user').newUser;
 
 export const selectAllCourses = (state) => state.get('user').courses;
+
+export const selectCourseToEdit = (state) => state.get('user').courseToEdit;

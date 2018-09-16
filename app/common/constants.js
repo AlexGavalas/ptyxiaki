@@ -19,3 +19,5 @@ export const CREATE_CURRICULUM = 'CREATE_CURRICULUM';
 // Courses
 export const GET_ALL_COURSES = 'GET_ALL_COURSES';
 export const SET_ALL_COURSES = 'SET_ALL_COURSES';
+export const SET_COURSE = 'SET_COURSE';
+export const ADD_COURSE_TO_EDIT = 'ADD_COURSE_TO_EDIT';

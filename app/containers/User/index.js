@@ -8,15 +8,14 @@ import PropTypes from 'prop-types';
 import { postUser, updateUser, deleteUser, addUserToEdit } from 'common/actions';
 import { selectNewUser } from 'common/selectors';
 
-class createUser extends React.Component {
+class CreateUser extends React.Component {
 
   static propTypes = {
+    dispatch: PropTypes.func,
     newUser: PropTypes.object,
-  }
+  };
 
-  state = {
-
-  }
+  state = {};
 
   componentDidMount() {
 
@@ -117,6 +116,4 @@ const mapStateToProps = () => createStructuredSelector({
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-)(createUser)
+export default compose(withConnect)(CreateUser);

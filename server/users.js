@@ -27,7 +27,7 @@ const createUser = (data) => {
 
     const users = database.collection('users');
 
-    users.insert(data, (error, doc) => {
+    users.insert(data, (error) => {
 
       if (error) console.log('ERROR');
     });

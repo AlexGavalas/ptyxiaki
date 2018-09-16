@@ -23,3 +23,5 @@ export const createCurriculum = (data) => axios.post('/createCurriculum', data);
 // Courses
 
 export const getAllCourses = () => axios.get('/getAllCourses');
+
+export const setCourse = (data) => axios.post('/setCourse', data);

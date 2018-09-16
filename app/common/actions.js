@@ -33,3 +33,7 @@ export const createCurriculum = (data) => ({ type: C.CREATE_CURRICULUM, data });
 export const getAllCourses = () => ({ type: C.GET_ALL_COURSES });
 
 export const setAllCourses = (data) => ({ type: C.SET_ALL_COURSES, data });
+
+export const setCourse = (data) => ({ type: C.SET_COURSE, data });
+
+export const addCourseToEdit = (data) => ({ type: C.ADD_COURSE_TO_EDIT, data });

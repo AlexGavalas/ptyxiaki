@@ -1,9 +1,4 @@
-import {
-  SET_USER_INFO,
-  SET_ALL_USERS,
-  ADD_USER_TO_EDIT,
-  SET_ALL_COURSES,
-} from 'common/constants';
+import * as C from 'common/constants';
 
 const initialState = {
   username: null,
@@ -16,28 +11,34 @@ function reducer(state = initialState, action) {
 
   switch (action.type) {
 
-    case SET_USER_INFO:
+    case C.SET_USER_INFO:
       return {
         ...state,
         username: action.data.username,
       };
 
-    case SET_ALL_USERS:
+    case C.SET_ALL_USERS:
       return {
         ...state,
         users: action.users
       };
 
-    case ADD_USER_TO_EDIT:
+    case C.ADD_USER_TO_EDIT:
       return {
         ...state,
         newUser: action.user,
       };
 
-    case SET_ALL_COURSES:
+    case C.SET_ALL_COURSES:
       return {
         ...state,
         courses: action.data,
+      };
+
+    case C.ADD_COURSE_TO_EDIT:
+      return {
+        ...state,
+        courseToEdit: action.data,
       };
 
     default:

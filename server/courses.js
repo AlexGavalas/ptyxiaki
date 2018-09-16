@@ -17,4 +17,19 @@ const getAllCourses = (req, res) => {
   }
 };
 
-module.exports = { getAllCourses };
+const setCourse = (req, res) => {
+
+  const database = db.get();
+
+  if (database) {
+
+    const courses = database.collection('courses');
+
+    courses.insert(req.body, (error) => {
+
+      if (error) console.log('ERROR');
+    });
+  }
+};
+
+module.exports = { getAllCourses, setCourse };

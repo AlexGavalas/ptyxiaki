@@ -7,9 +7,10 @@ class Panel extends React.Component {
     return (
       <div>
         <ButtonToolbar>
-          <Button bsStyle="primary" bsSize="large" href="/createCurriculum">Δημηιουργία Νέου Προγραμματος Σπουδών</Button>
-          <Button bsStyle="primary" bsSize="large" href="/createCourse">Δημηιουργία Νέου Μαθήματος</Button>
-          <Button bsStyle="primary" bsSize="large" href="/createUser">Δημηιουργία Νέου Χρήστη</Button>
+          <Button bsStyle="primary" bsSize="large" href="/createCurriculum">Δημιουργία Νέου Προγραμματος Σπουδών</Button>
+          <Button bsStyle="primary" bsSize="large" href="/createCourse">Δημιουργία Νέου Μαθήματος</Button>
+          <Button bsStyle="primary" bsSize="large" href="/courses">Όλα τα Μαθήματα</Button>
+          <Button bsStyle="primary" bsSize="large" href="/createUser">Δημιουργία Νέου Χρήστη</Button>
           <Button bsStyle="primary" bsSize="large" href="/editUser">Επεξεργασία Χρήστη</Button>
         </ButtonToolbar>
       </div>
