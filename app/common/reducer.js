@@ -2,9 +2,9 @@ import * as C from 'common/constants';
 
 const initialState = {
   username: null,
-  users: null,
-  newUser: null,
-  courses: null,
+  // users: null,
+  // newUser: null,
+  // courses: null,
 };
 
 function reducer(state = initialState, action) {
@@ -41,7 +41,7 @@ function reducer(state = initialState, action) {
         courseToEdit: action.data,
       };
 
-    case C.CREATE_CURRICULUM:
+    case C.SET_CURRICULUM_NAME:
       return {
         ...state,
         curriculum: action.data,
@@ -51,6 +51,12 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         coursesToName: action.data,
+      };
+
+    case C.SET_CURRICULUMS:
+      return {
+        ...state,
+        curriculums: action.data,
       };
 
     default:

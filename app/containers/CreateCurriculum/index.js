@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
-import { createCurriculum } from 'common/actions';
+import { setCurriculumName } from 'common/actions';
 
 class CreateCurriculum extends React.Component {
 
@@ -15,7 +15,7 @@ class CreateCurriculum extends React.Component {
 
     e.preventDefault();
 
-    this.props.dispatch(createCurriculum(this.state.title));
+    this.props.dispatch(setCurriculumName(this.state.title));
 
     this.props.history.push('/courses');
   }

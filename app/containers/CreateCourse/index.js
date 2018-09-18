@@ -5,7 +5,7 @@ import { compose } from 'redux';
 import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 
-import { setCourse } from 'common/actions';
+import { setCourse, updateCourse } from 'common/actions';
 import { selectCourseToEdit } from 'common/selectors';
 
 class CreateCourse extends React.Component {
@@ -36,7 +36,9 @@ class CreateCourse extends React.Component {
 
     e.preventDefault();
 
-    this.props.dispatch(setCourse(this.state));
+    if (this.props.courseToEdit) this.props.dispatch(updateCourse(this.state));
+
+    else this.props.dispatch(setCourse(this.state));
 
     this.props.history.push('/');
   }

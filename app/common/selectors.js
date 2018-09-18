@@ -11,3 +11,5 @@ export const selectCourseToEdit = (state) => state.get('user').courseToEdit;
 export const selectCurriculumName = (state) => state.get('user').curriculum;
 
 export const selecteCoursesToName = (state) => state.get('user').coursesToName;
+
+export const selectCurriculums = (state) => state.get('user').curriculums;

@@ -18,6 +18,7 @@ import CreateCourse from '../CreateCourse';
 import CreateCurriculum from '../CreateCurriculum';
 import AllCourses from '../AllCourses';
 import NameCourses from '../NameCourses';
+import AllCurriculums from '../AllCurriculums';
 
 import { selectUser } from 'common/selectors';
 import { fetchUserInfo } from 'common/actions';
@@ -41,12 +42,12 @@ class Home extends React.Component {
         <Router>
           <Switch>
             <Route exact path="/" component={Panel} />
-            <Route exact path="/home" component={Panel} />
-            <Route exact path="/createCurriculum" component={CreateCurriculum} />
-            <Route exact path="/createCourse" component={CreateCourse} />
             <Route exact path="/createUser" component={createUser} />
             <Route exact path="/editUser" component={editUser} />
             <Route exact path="/courses" component={AllCourses} />
+            <Route exact path="/createCourse" component={CreateCourse} />
+            <Route exact path="/createCurriculum" component={CreateCurriculum} />
+            <Route exact path="/curriculums" component={AllCurriculums} />
             <Route exact path="/nameCourses" component={NameCourses} />
           </Switch>
         </Router>

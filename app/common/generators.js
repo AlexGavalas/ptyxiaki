@@ -1,13 +1,13 @@
-import { call, put, select } from 'redux-saga/effects';
+import { call, put } from 'redux-saga/effects';
 
 import * as api from 'common/apiCalls';
-import { fetchUserInfo, setUserInfo, setAllUsers, setAllCourses } from 'common/actions';
+import * as ACTIONS from 'common/actions';
 
 export function * authenticateUser (action) {
 
   yield call(api.authenticateUser, action.data);
 
-  yield put(fetchUserInfo());
+  yield put(ACTIONS.fetchUserInfo());
 }
 
 export function * setUser () {
@@ -16,7 +16,7 @@ export function * setUser () {
 
   if (!response.data.error) {
 
-    yield put(setUserInfo(response.data));
+    yield put(ACTIONS.setUserInfo(response.data));
   }
 }
 
@@ -26,7 +26,7 @@ export function * fetchAllUsers () {
 
   if (!response.data.error) {
 
-      yield put(setAllUsers(response.data));
+      yield put(ACTIONS.setAllUsers(response.data));
   }
 }
 
@@ -46,14 +46,28 @@ export function * createCurriculum (action) {
   yield call(api.createCurriculum, action.data);
 }
 
+export function * getCurriculums () {
+
+  const response = yield call(api.getCurriculums);
+
+  if (!response.data.error) {
+
+    yield put(ACTIONS.setCurriculums(response.data));
+  }
+}
+
 export function * getAllCourses () {
 
   const response = yield call(api.getAllCourses);
 
   if (!response.data.error) {
 
-    yield put(setAllCourses(response.data));
+    yield put(ACTIONS.setAllCourses(response.data));
   }
+}
+
+export function * updateCourse (action) {
+  yield call(api.updateCourse, action.data);
 }
 
 export function * setCourse (action) {

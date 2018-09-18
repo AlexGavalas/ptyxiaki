@@ -4,7 +4,8 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Table, Button } from 'react-bootstrap';
 
-import { selecteCoursesToName } from 'common/selectors';
+import { selecteCoursesToName, selectCurriculumName } from 'common/selectors';
+import { createCurriculum } from 'common/actions';
 
 class NameCourses extends React.Component {
 
@@ -34,7 +35,9 @@ class NameCourses extends React.Component {
 
     const { courses } = this.state;
 
-    console.log(this.state);
+    this.props.dispatch(createCurriculum({ title: this.props.curriculumName, courses }));
+
+    this.props.history.push('/');
   }
 
   render() {
@@ -42,7 +45,7 @@ class NameCourses extends React.Component {
     const { coursesToName } = this.props;
 
     const headers = ['Generic Name', 'Specific Name'];
-    
+
     if (!coursesToName) return null;
 
     return (
@@ -78,6 +81,7 @@ const mapDispatchToProps = (dispatch) => ({ dispatch });
 
 const mapStateToProps = createStructuredSelector({
   coursesToName: selecteCoursesToName,
+  curriculumName: selectCurriculumName,
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

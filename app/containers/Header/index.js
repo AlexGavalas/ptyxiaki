@@ -18,13 +18,7 @@ export default class Header extends React.PureComponent {
           <Collapse navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/home">HOME</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/">LINK 1</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/">LINK 2</NavLink>
+                <NavLink href="/">HOME</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/logout">LOGOUT</NavLink>
