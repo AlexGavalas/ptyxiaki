@@ -20,6 +20,7 @@ export const setCurriculumName = (data) => ({ type: C.SET_CURRICULUM_NAME, data 
 export const createCurriculum = (data) => ({ type: C.CREATE_CURRICULUM, data });
 export const getCurriculums = () => ({ type: C.GET_CURRICULUMS });
 export const setCurriculums = (data) => ({ type: C.SET_CURRICULUMS, data });
+export const setCurriculumToAssign = (data) => ({ type: C.SET_CURRICULUM_TO_ASSIGN, data });
 
 // Courses
 export const getAllCourses = () => ({ type: C.GET_ALL_COURSES });
@@ -28,3 +29,5 @@ export const setCourse = (data) => ({ type: C.SET_COURSE, data });
 export const addCourseToEdit = (data) => ({ type: C.ADD_COURSE_TO_EDIT, data });
 export const setCoursesToName = (data) => ({ type: C.SET_COURSES_TO_NAME, data });
 export const updateCourse = (data) => ({ type: C.UPDATE_COURSE, data });
+export const fetchCoursesForOneCurriculum = (data) => ({ type: C.FETCH_COURSES_FOR_ONE_CURRICULUM, data });
+export const setCoursesToAssign = (data) => ({ type: C.SET_COURSES_TO_ASSIGN, data });

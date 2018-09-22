@@ -5,13 +5,20 @@ import { createStructuredSelector } from 'reselect';
 import { Table, Button } from 'react-bootstrap';
 
 import { selectCurriculums } from 'common/selectors';
-import { getCurriculums } from 'common/actions';
+import { getCurriculums, setCurriculumToAssign } from 'common/actions';
 
 class AllCurriculums extends React.Component {
 
   componentDidMount() {
 
       this.props.dispatch(getCurriculums());
+  }
+
+  goToAssignment = (curriculum) => {
+    console.log(curriculum);
+    this.props.dispatch(setCurriculumToAssign(curriculum));
+
+    this.props.history.push('/curriculum');
   }
 
   render() {
@@ -32,7 +39,7 @@ class AllCurriculums extends React.Component {
           </thead>
           <tbody>
             {curriculums.map((cur, i) => (
-              <tr key={i}>
+              <tr onClick={() => this.goToAssignment(cur.title)} key={i}>
                 <td>{cur.title}</td>
                 <td>{Object.keys(cur.courses).length}</td>
               </tr>

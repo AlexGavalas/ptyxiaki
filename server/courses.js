@@ -81,4 +81,21 @@ const updateCourse = (req, res) => {
   }
 };
 
-module.exports = { getAllCourses, setCourse, createCurriculum, getCurriculums, updateCourse };
+const fetchCoursesForOneCurriculum = (req, res) => {
+
+  const database = db.get();
+
+  if (database) {
+
+    const curriculums = database.collection('curriculums');
+
+    curriculums.find({ title: req.body.data }).toArray((error, doc) => {
+
+      if (error) console.log('ERROR');
+
+      else res.json(doc[0]);
+    });
+  }
+};
+
+module.exports = { getAllCourses, setCourse, createCurriculum, getCurriculums, updateCourse, fetchCoursesForOneCurriculum };

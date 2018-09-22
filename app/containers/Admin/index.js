@@ -14,6 +14,7 @@ class Panel extends React.Component {
           <Button bsStyle="primary" bsSize="large" href="/courses">Όλα τα Μαθήματα</Button>
           <Button bsStyle="primary" bsSize="large" href="/createUser">Δημιουργία Νέου Χρήστη</Button>
           <Button bsStyle="primary" bsSize="large" href="/editUser">Επεξεργασία Χρήστη</Button>
+          <Button bsStyle="primary" bsSize="large" href="/curriculums">Ανάθεση Καθηγητή σε Μάθημα</Button>
         </ButtonToolbar>
       </div>
     );

@@ -13,3 +13,7 @@ export const selectCurriculumName = (state) => state.get('user').curriculum;
 export const selecteCoursesToName = (state) => state.get('user').coursesToName;
 
 export const selectCurriculums = (state) => state.get('user').curriculums;
+
+export const selectCurriculumToAssign = (state) => state.get('user').curriculumToAssign;
+
+export const selectCoursesToAssign = (state) => state.get('user').coursesToAssign;

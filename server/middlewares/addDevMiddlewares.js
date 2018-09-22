@@ -60,6 +60,7 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
   app.post('/setCourse', courses.setCourse);
   app.post('/createCurriculum', courses.createCurriculum);
   app.post('/updateCourse', courses.updateCourse);
+  app.post('/fetchCoursesForOneCurriculum', courses.fetchCoursesForOneCurriculum);
 
   app.get('/user', (req, res) => res.json(req.user));
   app.get('/allUsers', user.getAllUsers);

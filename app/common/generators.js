@@ -73,3 +73,13 @@ export function * updateCourse (action) {
 export function * setCourse (action) {
   yield call(api.setCourse, action.data);
 }
+
+export function * fetchCoursesForOneCurriculum (action) {
+
+  const response = yield call(api.fetchCoursesForOneCurriculum, action.data);
+
+  if (!response.data.error) {
+
+    yield put(ACTIONS.setCoursesToAssign(response.data.courses));
+  }
+}

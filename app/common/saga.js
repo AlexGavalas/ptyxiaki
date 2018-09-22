@@ -15,4 +15,5 @@ export default function * watcher () {
   yield takeLatest([C.SET_COURSE], GEN.setCourse);
   yield takeLatest([C.GET_CURRICULUMS], GEN.getCurriculums);
   yield takeLatest([C.UPDATE_COURSE], GEN.updateCourse);
+  yield takeLatest([C.FETCH_COURSES_FOR_ONE_CURRICULUM], GEN.fetchCoursesForOneCurriculum);
 }
