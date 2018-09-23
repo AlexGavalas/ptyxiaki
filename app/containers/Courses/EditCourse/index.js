@@ -4,19 +4,16 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { setCourse, updateCourse } from 'common/actions';
+import { updateCourse, deleteCourse } from 'common/actions';
 import { selectCourseToEdit } from 'common/selectors';
 
-class CreateCourse extends React.Component {
+class EditCourse extends React.Component {
 
   state = {};
 
   componentDidMount() {
 
-    if (this.props.courseToEdit) {
-
-      this.setState(this.props.courseToEdit);
-    }
+    this.setState(this.props.courseToEdit);
   }
 
   handleInput = (event) => {
@@ -26,13 +23,16 @@ class CreateCourse extends React.Component {
     this.setState({ [name]: (name === 'name') ? value : +value });
   }
 
-  handleSubmit = (e) => {
+  removeCourse = () => {
 
-    e.preventDefault();
+    this.props.dispatch(deleteCourse(this.state));
 
-    if (this.props.courseToEdit) this.props.dispatch(updateCourse(this.state));
+    this.props.history.push('/');
+  }
 
-    else this.props.dispatch(setCourse(this.state));
+  handleSubmit = () => {
+
+    this.props.dispatch(updateCourse(this.state));
 
     this.props.history.push('/');
   }
@@ -52,9 +52,9 @@ class CreateCourse extends React.Component {
 
     return (
       <div>
-        <h1>{this.props.courseToEdit ? 'Επεξεργασία Μαθήματος' : 'Δημιουργία Νέου Μαθήματος'}</h1>
+        <h1>Επεξεργασία Μαθήματος</h1>
         <div className="Login">
-          <form onChange={this.handleInput} onSubmit={this.handleSubmit}>
+          <form onChange={this.handleInput}>
             {Object.keys(fields).map((field, i) => (
               <FormGroup key={field} bsSize="large">
                 <ControlLabel>{fields[field]}</ControlLabel>
@@ -67,9 +67,16 @@ class CreateCourse extends React.Component {
             ))}
             <Button
               block
+              onClick={this.removeCourse}
               bsSize="large"
-              bsStyle="primary"
-              type="submit">
+              bsStyle="danger">
+                Διαγραφή
+            </Button>
+            <Button
+              block
+              onClick={this.handleSubmit}
+              bsSize="large"
+              bsStyle="primary">
                 Καταχώρηση
             </Button>
           </form>
@@ -87,4 +94,4 @@ const mapStateToProps = () => createStructuredSelector({
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(withConnect)(CreateCourse);
+export default compose(withConnect)(EditCourse);

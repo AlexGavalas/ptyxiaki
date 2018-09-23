@@ -105,3 +105,7 @@ export function * updateProfessor (action) {
 export function * deleteProfessor (action) {
   yield call(api.deleteProfessor, action.data);
 }
+
+export function * deleteCourse (action) {
+  yield call(api.deleteCourse, action.data);
+}

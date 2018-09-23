@@ -22,6 +22,7 @@ export const createCurriculum = (data) => axios.post('/createCurriculum', data);
 export const getAllCourses = () => axios.get('/getAllCourses');
 export const setCourse = (data) => axios.post('/setCourse', data);
 export const updateCourse = (data) => axios.post('/updateCourse', data);
+export const deleteCourse = (data) => axios.post('/deleteCourse', data);
 export const fetchCoursesForOneCurriculum = (cur) => axios.post('/fetchCoursesForOneCurriculum', { data: cur });
 
 // Professors

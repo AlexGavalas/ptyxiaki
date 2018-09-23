@@ -22,7 +22,7 @@ class AllCourses extends React.Component {
 
     this.props.dispatch(addCourseToEdit(course));
 
-    this.props.history.push('/createCourse');
+    this.props.history.push('/editCourse');
   }
 
   selectCourse = (index) => {
@@ -34,17 +34,11 @@ class AllCourses extends React.Component {
     this.setState({ selected });
   }
 
-  handleSubmit = (event) => {
-
-    event.preventDefault();
+  handleSubmit = () => {
 
     const { selected } = this.state;
 
-    const courses = [];
-
-    Object.keys(selected).forEach((key) => {
-      if (selected[key]) courses.push(this.props.courses[key]);
-    });
+    const courses = Object.keys(selected).map((key) => selected[key] ? this.props.courses[key] : null).filter((f) => f !== null);
 
     this.props.dispatch(setCoursesToName(courses));
 
@@ -65,7 +59,7 @@ class AllCourses extends React.Component {
 
     return (
       <div className="Login">
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <Table>
             <thead>
               <tr>
@@ -80,13 +74,14 @@ class AllCourses extends React.Component {
               ))}
             </tbody>
           </Table>
-          <Button
-            block
-            bsSize="large"
-            bsStyle="primary"
-            type="submit">
-              Επόμενο
-          </Button>
+          {selectMode &&
+            <Button
+              block
+              onClick={this.handleSubmit}
+              bsSize="large"
+              bsStyle="primary">
+                Επόμενο
+            </Button>}
         </form>
       </div>
     );

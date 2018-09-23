@@ -98,4 +98,16 @@ const fetchCoursesForOneCurriculum = (req, res) => {
   }
 };
 
-module.exports = { getAllCourses, setCourse, createCurriculum, getCurriculums, updateCourse, fetchCoursesForOneCurriculum };
+const deleteCourse = (req, res) => {
+
+  const database = db.get();
+
+  if (database) {
+
+    const courses = database.collection('courses');
+
+    courses.remove({ _id: ObjectID(req.body._id) });
+  }
+}
+
+module.exports = { getAllCourses, setCourse, createCurriculum, getCurriculums, updateCourse, fetchCoursesForOneCurriculum, deleteCourse };
