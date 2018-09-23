@@ -15,7 +15,7 @@ class AllCurriculums extends React.Component {
   }
 
   goToAssignment = (curriculum) => {
-    console.log(curriculum);
+    
     this.props.dispatch(setCurriculumToAssign(curriculum));
 
     this.props.history.push('/curriculum');

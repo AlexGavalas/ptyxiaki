@@ -1,35 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import Image from 'react-image';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import logo from 'images/logo.png';
 import 'styles/Login.css';
+
+import logo from 'images/logo.png';
+
 import { authenticateUser } from 'common/actions';
 
-class Login extends Component {
+class Login extends React.Component {
 
   state = {
     username: '',
     password: ''
   }
 
-  handleInput = () => {
-    this.setState({
-      username: this.username.value,
-      password: this.password.value,
-    });
-  }
+  handleInput = () => this.setState({ username: this.username.value, password: this.password.value });
 
-  handleSubmit = (e) => {
+  handleSubmit = (event) => {
 
-    e.preventDefault();
+    event.preventDefault();
 
     this.props.dispatch(authenticateUser(this.state));
   }
 
   render() {
+
     return (
       <div>
         <Image src={logo} style = {{ position: 'relative', left: 200 }} />
@@ -71,6 +69,4 @@ const mapDispatchToProps = (dispatch) => ({ dispatch });
 
 const withConnect = connect(mapDispatchToProps);
 
-export default compose(
-  withConnect,
-)(Login);
+export default compose(withConnect)(Login);

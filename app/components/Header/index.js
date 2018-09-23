@@ -5,12 +5,13 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink
+  NavLink,
 } from 'reactstrap';
 
-export default class Header extends React.PureComponent {
+class Header extends React.PureComponent {
 
   render() {
+    
     return (
       <div>
         <Navbar color="light" light expand="md">
@@ -29,4 +30,6 @@ export default class Header extends React.PureComponent {
       </div>
     );
   }
-}
+};
+
+export default Header;

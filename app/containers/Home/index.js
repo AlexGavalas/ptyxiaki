@@ -1,16 +1,12 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  withRouter
-} from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
+import Header from 'components/Header';
+
 import Login from '../Login';
-import Header from '../Header';
 import Panel from '../Admin';
 import createUser from '../User';
 import editUser from '../editUser';
@@ -20,6 +16,7 @@ import AllCourses from '../AllCourses';
 import NameCourses from '../NameCourses';
 import AllCurriculums from '../AllCurriculums';
 import CurriculumToAssign from '../curriculumToAssign';
+import Professors from '../Professors';
 
 import { selectUser } from 'common/selectors';
 import { fetchUserInfo } from 'common/actions';
@@ -35,12 +32,12 @@ class Home extends React.Component {
 
     const { user } = this.props;
 
-    return user == null ? (
-      <Login />
-    ) : (
+    if (user == null) return (<Login />);
+
+    return (
       <div>
         <Header />
-        <Router>
+        <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Panel} />
             <Route exact path="/createUser" component={createUser} />
@@ -51,9 +48,10 @@ class Home extends React.Component {
             <Route exact path="/curriculums" component={AllCurriculums} />
             <Route exact path="/nameCourses" component={NameCourses} />
             <Route exact path="/curriculum" component={CurriculumToAssign} />
+            <Route exact path="/professors" component={Professors} />
           </Switch>
-        </Router>
-        </div>
+        </BrowserRouter>
+      </div>
     );
   }
 }

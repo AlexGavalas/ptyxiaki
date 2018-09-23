@@ -2,18 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import PropTypes from 'prop-types';
 import { Table } from 'react-bootstrap';
 
 import { fetchAllUsers, addUserToEdit } from 'common/actions';
 import { selectAllUsers } from 'common/selectors';
 
 class EditUser extends React.Component {
-
-  static propTypes = {
-    users: PropTypes.array,
-    dispatch: PropTypes.func,
-  }
 
   componentDidMount() {
 
@@ -64,6 +58,4 @@ const mapStateToProps = () => createStructuredSelector({
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-)(EditUser);
+export default compose(withConnect)(EditUser);

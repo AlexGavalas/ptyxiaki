@@ -3,17 +3,11 @@ import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import PropTypes from 'prop-types';
 
 import { postUser, updateUser, deleteUser, addUserToEdit } from 'common/actions';
 import { selectNewUser } from 'common/selectors';
 
 class CreateUser extends React.Component {
-
-  static propTypes = {
-    dispatch: PropTypes.func,
-    newUser: PropTypes.object,
-  };
 
   state = {};
 
@@ -36,9 +30,9 @@ class CreateUser extends React.Component {
     this.setState({ [name]: value });
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = (event) => {
 
-    e.preventDefault();
+    event.preventDefault();
 
     if (!this.props.newUser) this.props.dispatch(postUser(this.state));
 

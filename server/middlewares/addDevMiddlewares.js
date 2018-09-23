@@ -8,6 +8,7 @@ const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
 const user = require('../users');
 const courses = require('../courses');
+const professors = require('../professors');
 
 function createWebpackMiddleware(compiler, publicPath) {
   return webpackDevMiddleware(compiler, {
@@ -66,6 +67,7 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
   app.get('/allUsers', user.getAllUsers);
   app.get('/getAllCourses', courses.getAllCourses);
   app.get('/getCurriculums', courses.getCurriculums);
+  app.get('/getAllProfessors', professors.getAll);
 
   app.get('/logout', (req, res) => {
 

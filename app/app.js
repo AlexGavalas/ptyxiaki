@@ -7,14 +7,13 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 
-import Home from 'containers/Home';
 import 'styles/index.css';
 import 'styles/bootstrap.min.css';
 import configureStore from './configureStore';
+import Home from 'containers/Home';
 
-const initialState = {};
 const history = createHistory();
-const store = configureStore(initialState, history);
+const store = configureStore({}, history);
 const MOUNT_NODE = document.getElementById('app');
 
 ReactDOM.render(

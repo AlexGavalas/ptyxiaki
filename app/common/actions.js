@@ -31,3 +31,7 @@ export const setCoursesToName = (data) => ({ type: C.SET_COURSES_TO_NAME, data }
 export const updateCourse = (data) => ({ type: C.UPDATE_COURSE, data });
 export const fetchCoursesForOneCurriculum = (data) => ({ type: C.FETCH_COURSES_FOR_ONE_CURRICULUM, data });
 export const setCoursesToAssign = (data) => ({ type: C.SET_COURSES_TO_ASSIGN, data });
+
+// Professors
+export const getAllProfessors = () => ({ type: C.GET_ALL_PROFESSORS });
+export const setAllProfessors = (data) => ({ type: C.SET_ALL_PROFESSORS });

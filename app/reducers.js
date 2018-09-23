@@ -2,4 +2,4 @@ import { combineReducers } from 'redux-immutable';
 
 import reducer from 'common/reducer';
 
-export const createReducer = () => combineReducers({ user: reducer });
+export const createReducer = () => combineReducers({ app: reducer });

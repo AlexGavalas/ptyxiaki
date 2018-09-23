@@ -68,6 +68,12 @@ function reducer(state = initialState, action) {
         coursesToAssign: action.data,
       };
 
+    case C.SET_ALL_PROFESSORS:
+      return {
+        ...state,
+        professors: action.data,
+      };
+
     default:
       return state;
   }

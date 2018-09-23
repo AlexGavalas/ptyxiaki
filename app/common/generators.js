@@ -83,3 +83,13 @@ export function * fetchCoursesForOneCurriculum (action) {
     yield put(ACTIONS.setCoursesToAssign(response.data.courses));
   }
 }
+
+export function * getAllProfessors () {
+
+  const response = yield call(api.getAllProfessors);
+
+  if (!response.data.error) {
+
+    yield put(ACTIONS.setAllProfessors(response.data));
+  }
+}

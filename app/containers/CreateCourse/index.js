@@ -2,18 +2,12 @@ import React from 'react';
 import { FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import PropTypes from 'prop-types';
 import { createStructuredSelector } from 'reselect';
 
 import { setCourse, updateCourse } from 'common/actions';
 import { selectCourseToEdit } from 'common/selectors';
 
 class CreateCourse extends React.Component {
-
-  static propTypes = {
-    dispatch: PropTypes.func,
-    courseToEdit: PropTypes.object,
-  };
 
   state = {};
 
