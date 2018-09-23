@@ -16,9 +16,10 @@ import AllCourses from '../AllCourses';
 import NameCourses from '../NameCourses';
 import AllCurriculums from '../AllCurriculums';
 import CurriculumToAssign from '../curriculumToAssign';
-import Professors from '../Professors';
-import CreateProfessor from '../CreateProfessor';
-import EditProfessor from '../EditProfessor';
+
+import AllProfessors from 'containers/Professors/AllProfessors';
+import CreateProfessor from 'containers/Professors/CreateProfessor';
+import EditProfessor from 'containers/Professors/EditProfessor';
 
 import { selectUser } from 'common/selectors';
 import { fetchUserInfo } from 'common/actions';
@@ -50,7 +51,7 @@ class Home extends React.Component {
             <Route exact path="/curriculums" component={AllCurriculums} />
             <Route exact path="/nameCourses" component={NameCourses} />
             <Route exact path="/curriculum" component={CurriculumToAssign} />
-            <Route exact path="/professors" component={Professors} />
+            <Route exact path="/professors" component={AllProfessors} />
             <Route exact path="/createProfessor" component={CreateProfessor} />
             <Route exact path="/editProfessor" component={EditProfessor} />
           </Switch>
