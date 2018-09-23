@@ -27,3 +27,6 @@ export const fetchCoursesForOneCurriculum = (cur) => axios.post('/fetchCoursesFo
 // Professors
 
 export const getAllProfessors = () => axios.get('/getAllProfessors');
+export const createProfessor = (data) => axios.post('/createProfessor', data);
+export const updateProfessor = (data) => axios.post('/updateProfessor', data);
+export const deleteProfessor = (data) => axios.post('/deleteProfessor', data);

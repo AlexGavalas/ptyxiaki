@@ -34,4 +34,8 @@ export const setCoursesToAssign = (data) => ({ type: C.SET_COURSES_TO_ASSIGN, da
 
 // Professors
 export const getAllProfessors = () => ({ type: C.GET_ALL_PROFESSORS });
-export const setAllProfessors = (data) => ({ type: C.SET_ALL_PROFESSORS });
+export const setAllProfessors = (data) => ({ type: C.SET_ALL_PROFESSORS, data });
+export const createProfessor = (data) => ({ type: C.CREATE_PROFESSOR, data });
+export const editProfessor = (data) => ({ type: C.EDIT_PROFESSOR, data });
+export const updateProfessor = (data) => ({ type: C.UPDATE_PROFESSOR, data });
+export const deleteProfessor = (data) => ({ type: C.DELETE_PROFESSOR, data });

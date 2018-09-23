@@ -19,3 +19,5 @@ export const selectCurriculumToAssign = (state) => state.get('app').curriculumTo
 export const selectCoursesToAssign = (state) => state.get('app').coursesToAssign;
 
 export const selectAllProfessors = (state) => state.get('app').professors;
+
+export const selectProfessorToEdit = (state) => state.get('app').professorToEdit;

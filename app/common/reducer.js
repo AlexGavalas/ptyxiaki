@@ -74,6 +74,12 @@ function reducer(state = initialState, action) {
         professors: action.data,
       };
 
+    case C.EDIT_PROFESSOR:
+      return {
+        ...state,
+        professorToEdit: action.data,
+      };
+
     default:
       return state;
   }

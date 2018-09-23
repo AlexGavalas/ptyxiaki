@@ -17,4 +17,7 @@ export default function * watcher () {
   yield takeLatest([C.UPDATE_COURSE], GEN.updateCourse);
   yield takeLatest([C.FETCH_COURSES_FOR_ONE_CURRICULUM], GEN.fetchCoursesForOneCurriculum);
   yield takeLatest([C.GET_ALL_PROFESSORS], GEN.getAllProfessors);
+  yield takeLatest([C.CREATE_PROFESSOR], GEN.createProfessor);
+  yield takeLatest([C.UPDATE_PROFESSOR], GEN.updateProfessor);
+  yield takeLatest([C.DELETE_PROFESSOR], GEN.deleteProfessor);
 }

@@ -93,3 +93,15 @@ export function * getAllProfessors () {
     yield put(ACTIONS.setAllProfessors(response.data));
   }
 }
+
+export function * createProfessor (action) {
+  yield call(api.createProfessor, action.data);
+}
+
+export function * updateProfessor (action) {
+  yield call(api.updateProfessor, action.data);
+}
+
+export function * deleteProfessor (action) {
+  yield call(api.deleteProfessor, action.data);
+}
