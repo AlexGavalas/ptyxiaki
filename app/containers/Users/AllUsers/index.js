@@ -7,7 +7,7 @@ import { Table } from 'react-bootstrap';
 import { fetchAllUsers, addUserToEdit } from 'common/actions';
 import { selectAllUsers } from 'common/selectors';
 
-class EditUser extends React.Component {
+class AllUsers extends React.Component {
 
   componentDidMount() {
 
@@ -18,7 +18,7 @@ class EditUser extends React.Component {
 
     this.props.dispatch(addUserToEdit(user));
 
-    this.props.history.push('/createUser');
+    this.props.history.push('/editUser');
   }
 
   render() {
@@ -58,4 +58,4 @@ const mapStateToProps = () => createStructuredSelector({
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(withConnect)(EditUser);
+export default compose(withConnect)(AllUsers);

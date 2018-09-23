@@ -4,23 +4,20 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { postUser, updateUser, deleteUser, addUserToEdit } from 'common/actions';
+import { updateUser, deleteUser, addUserToEdit } from 'common/actions';
 import { selectNewUser } from 'common/selectors';
 
-class CreateUser extends React.Component {
+class EditUser extends React.Component {
 
   state = {};
 
   componentDidMount() {
 
-    if (this.props.newUser) {
+    const { newUser } = this.props;
 
-      const { newUser } = this.props;
+    newUser.originalUsername = newUser.username;
 
-      newUser.originalUsername = newUser.username;
-
-      this.setState(newUser);
-    }
+    this.setState(newUser);
   }
 
   handleInput = (event) => {
@@ -30,29 +27,20 @@ class CreateUser extends React.Component {
     this.setState({ [name]: value });
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = () => {
 
-    event.preventDefault();
+    this.props.dispatch(updateUser(this.state));
 
-    if (!this.props.newUser) this.props.dispatch(postUser(this.state));
+    this.props.dispatch(addUserToEdit(null));
 
-    else {
-
-      this.props.dispatch(updateUser(this.state));
-
-      this.props.dispatch(addUserToEdit(null));
-    }
-
-    this.props.history.push('/editUser');
+    this.props.history.push('/');
   }
 
-  deleteUser = (e) => {
-
-    e.preventDefault();
+  deleteUser = () => {
 
     this.props.dispatch(deleteUser(this.state.originalUsername));
 
-    this.props.history.push('/editUser');
+    this.props.history.push('/');
   }
 
   render() {
@@ -67,9 +55,9 @@ class CreateUser extends React.Component {
 
     return (
       <div>
-        <h1>{this.props.newUser ? 'Επεξεργασία Χρήστη' : 'Δημιουργία Νέου Χρήστη'}</h1>
+        <h1>Επεξεργασία Χρήστη</h1>
         <div className="Login">
-          <form onChange={this.handleInput} onSubmit={this.handleSubmit}>
+          <form onChange={this.handleInput}>
             {Object.keys(fields).map((field, i) => (
               <FormGroup key={field} bsSize="large">
                 <ControlLabel>{fields[field]}</ControlLabel>
@@ -80,16 +68,16 @@ class CreateUser extends React.Component {
                 />
               </FormGroup>
             ))}
-            {this.props.newUser &&
-              <Button
-                block
-                bsSize="large"
-                bsStyle="danger"
-                onClick={this.deleteUser}>
-                  Διαγραφή
-              </Button>}
             <Button
               block
+              bsSize="large"
+              bsStyle="danger"
+              onClick={this.deleteUser}>
+                Διαγραφή
+            </Button>
+            <Button
+              block
+              onClick={this.handleSubmit}
               bsSize="large"
               bsStyle="primary"
               type="submit">
@@ -110,4 +98,4 @@ const mapStateToProps = () => createStructuredSelector({
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(withConnect)(CreateUser);
+export default compose(withConnect)(EditUser);

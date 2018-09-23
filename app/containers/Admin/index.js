@@ -13,7 +13,7 @@ class Panel extends React.Component {
           <Button bsStyle="primary" bsSize="large" href="/createCourse">Δημιουργία Νέου Μαθήματος</Button>
           <Button bsStyle="primary" bsSize="large" href="/courses">Όλα τα Μαθήματα</Button>
           <Button bsStyle="primary" bsSize="large" href="/createUser">Δημιουργία Νέου Χρήστη</Button>
-          <Button bsStyle="primary" bsSize="large" href="/editUser">Επεξεργασία Χρήστη</Button>
+          <Button bsStyle="primary" bsSize="large" href="/users">Όλοι οι Χρήστες</Button>
           <Button bsStyle="primary" bsSize="large" href="/curriculums">Ανάθεση Καθηγητή σε Μάθημα</Button>
           <Button bsStyle="primary" bsSize="large" href="/professors">Όλοι οι Καθηγητές</Button>
           <Button bsStyle="primary" bsSize="large" href="/createProfessor">Δημιουργία Καθηγητή</Button>

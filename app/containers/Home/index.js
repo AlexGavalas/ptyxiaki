@@ -8,14 +8,16 @@ import Header from 'components/Header';
 
 import Login from '../Login';
 import Panel from '../Admin';
-import createUser from '../User';
-import editUser from '../editUser';
 import CreateCourse from '../CreateCourse';
 import CreateCurriculum from '../CreateCurriculum';
 import AllCourses from '../AllCourses';
 import NameCourses from '../NameCourses';
 import AllCurriculums from '../AllCurriculums';
 import CurriculumToAssign from '../curriculumToAssign';
+
+import AllUsers from 'containers/Users/AllUsers';
+import CreateUser from 'containers/Users/CreateUser';
+import EditUser from 'containers/Users/EditUser';
 
 import AllProfessors from 'containers/Professors/AllProfessors';
 import CreateProfessor from 'containers/Professors/CreateProfessor';
@@ -43,8 +45,9 @@ class Home extends React.Component {
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={Panel} />
-            <Route exact path="/createUser" component={createUser} />
-            <Route exact path="/editUser" component={editUser} />
+            <Route exact path="/createUser" component={CreateUser} />
+            <Route exact path="/users" component={AllUsers} />
+            <Route exact path="/editUser" component={EditUser} />
             <Route exact path="/courses" component={AllCourses} />
             <Route exact path="/createCourse" component={CreateCourse} />
             <Route exact path="/createCurriculum" component={CreateCurriculum} />
