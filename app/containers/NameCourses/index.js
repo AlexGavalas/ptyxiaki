@@ -31,9 +31,25 @@ class NameCourses extends React.Component {
     this.setState({ courses });
   }
 
+  handleIDChange = (event) => {
+
+    const { name, value } = event.target;
+
+    const { courses } = this.state;
+
+    courses[name].id = value;
+
+    this.setState({ courses });
+  }
+
   handleSubmit = () => {
 
     const { courses } = this.state;
+
+    Object.keys(courses).forEach((key) => {
+
+      if (!courses[key].maidenName) courses[key].maidenName = courses[key].name;
+    });
 
     this.props.dispatch(createCurriculum({ title: this.props.curriculumName, courses }));
 
@@ -44,7 +60,7 @@ class NameCourses extends React.Component {
 
     const { coursesToName } = this.props;
 
-    const headers = ['Generic Name', 'Specific Name'];
+    const headers = ['Generic Name', 'Specific Name', 'ID'];
 
     if (!coursesToName) return null;
 
@@ -61,6 +77,7 @@ class NameCourses extends React.Component {
               <tr key={course._id}>
                 <td>{course.name}</td>
                 <td><input onChange={this.handleChange} name={course._id} defaultValue={course.maidenName || course.name}/></td>
+                <td><input onChange={this.handleIDChange} name={course._id} defaultValue={course.id || ''}/></td>
               </tr>
             ))}
           </tbody>

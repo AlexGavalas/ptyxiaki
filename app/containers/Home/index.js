@@ -12,6 +12,7 @@ import CreateCurriculum from '../CreateCurriculum';
 import NameCourses from '../NameCourses';
 import AllCurriculums from '../AllCurriculums';
 import CurriculumToAssign from '../curriculumToAssign';
+import CoursePage from '../CoursePage';
 
 import AllCourses from 'containers/Courses/AllCourses';
 import EditCourse from 'containers/Courses/EditCourse';
@@ -65,6 +66,7 @@ class Home extends React.Component {
             <Route exact path="/curriculums" component={AllCurriculums} />
             <Route exact path="/nameCourses" component={NameCourses} />
             <Route exact path="/curriculum" component={CurriculumToAssign} />
+            <Route exact path="/coursePage" component={CoursePage} />
           </Switch>
         </BrowserRouter>
       </div>
