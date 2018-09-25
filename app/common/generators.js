@@ -80,7 +80,7 @@ export function * fetchCoursesForOneCurriculum (action) {
 
   if (!response.data.error) {
 
-    yield put(ACTIONS.setCoursesToAssign(response.data.courses));
+    yield put(ACTIONS.setCoursesToAssign(response.data));
   }
 }
 

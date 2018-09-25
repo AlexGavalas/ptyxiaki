@@ -65,7 +65,8 @@ function reducer(state = initialState, action) {
     case C.SET_COURSES_TO_ASSIGN:
       return {
         ...state,
-        coursesToAssign: action.data,
+        coursesToAssign: action.data.courses,
+        curriculumInfo: { title: action.data.title, curID: action.data._id },
       };
 
     case C.SET_ALL_PROFESSORS:

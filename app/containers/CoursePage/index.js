@@ -8,24 +8,28 @@ import { selectCourseToEdit } from 'common/selectors';
 
 class CoursePage extends React.Component {
 
-  state = {};
-  // componentDidMount() {
-  //
-  //   this.setState(this.props.course);
-  // }
+  state = {
+    labHours: 0,
+    theoryHours: 0,
+    tutorialHours: 0,
+    labSegments: 0,
+    theorySegments: 0,
+    tutorialSegments: 0,
+  };
 
   handleChange = (event) => {
 
     const { name, value } = event.target;
 
-    this.setState({ [name]: +value });
+    if (this.props.course[name] >= +value) {
+
+      this.setState({ [name]: +value });
+    }
   }
 
   render() {
 
     const { course } = this.props;
-    console.log(this.state);
-    console.log(course);
 
     if (!course) return null;
 
@@ -36,7 +40,9 @@ class CoursePage extends React.Component {
     const segments = Object.keys(course).filter((f) => f.endsWith('Segments'));
 
     const hours = Object.keys(course).filter((f) => f.endsWith('Hours'));
-    const menu = [0,1,2];
+
+    const menu = [0, 1, 2];
+
     return (
       <div className="Login">
         <Table>
@@ -49,8 +55,8 @@ class CoursePage extends React.Component {
             {menu.map((index) => (
               <tr key={index}>
                 <td>{categories[index]}</td>
-                <td><input onChange={this.handleChange} name={segments[index]} max={course[segments[index]]} defaultValue={0} /></td>
-                <td><input onChange={this.handleChange} name={categories[index]} max={course[categories[index]]} defaultValue={0} /></td>
+                <td><input onChange={this.handleChange} name={segments[index]} defaultValue={this.state[segments[index]]} /></td>
+                <td><input onChange={this.handleChange} name={hours[index]} defaultValue={this.state[hours[index]]} /></td>
               </tr>
             ))}
           </tbody>

@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Table, Button } from 'react-bootstrap';
 
-import { selectCurriculumToAssign, selectCoursesToAssign } from 'common/selectors';
+import { selectCurriculumToAssign, selectCurriculumInfo, selectCoursesToAssign } from 'common/selectors';
 import { fetchCoursesForOneCurriculum, addCourseToEdit } from 'common/actions';
 
 class CurriculumToAssign extends React.Component {
@@ -23,11 +23,11 @@ class CurriculumToAssign extends React.Component {
 
   render() {
 
-    const { curriculum, coursesToAssign } = this.props;
+    const { curriculumInfo, coursesToAssign } = this.props;
 
     const headers = ['Όνομα', 'Εξάμηνο', 'ID'];
 
-    if (!curriculum || !coursesToAssign) return null;
+    if (!curriculumInfo || !coursesToAssign) return null;
 
     return (
       <div className="Login">
@@ -40,7 +40,7 @@ class CurriculumToAssign extends React.Component {
           <tbody>
             {Object.keys(coursesToAssign).map((id) => (
               <tr key={coursesToAssign[id]._id} onClick={() => this.goToCoursePage(coursesToAssign[id])}>
-                <td>{coursesToAssign[id].maidenName}</td>
+                <td>{coursesToAssign[id].curriculumNames[curriculumInfo.curID]}</td>
                 <td>{coursesToAssign[id].semester}</td>
                 <td>{coursesToAssign[id].id}</td>
               </tr>
@@ -56,6 +56,7 @@ const mapDispatchToProps = (dispatch) => ({ dispatch });
 
 const mapStateToProps = () => createStructuredSelector({
   curriculum: selectCurriculumToAssign,
+  curriculumInfo: selectCurriculumInfo,
   coursesToAssign: selectCoursesToAssign,
 });
 

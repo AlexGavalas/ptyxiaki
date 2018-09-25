@@ -28,7 +28,7 @@ class CreateCourse extends React.Component {
     const fields = {
       name: 'Τίτλος Μαθήματος',
       theoryHours: 'Ώρες Θεωρίας',
-      theroySegments: 'Τμήματα Θεωρίας',
+      theorySegments: 'Τμήματα Θεωρίας',
       labHours: 'Ώρες Εργαστηρίου',
       labSegments: 'Τμήματα Εργαστηρίου',
       tutorialHours: 'Ώρες Φροντιστηρίου',

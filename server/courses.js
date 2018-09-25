@@ -41,9 +41,32 @@ const createCurriculum = (req, res) => {
 
     const curriculums = database.collection('curriculums');
 
-    curriculums.insert(req.body, (error) => {
+    const curriculum = req.body;
+
+    const courses = Object.keys(curriculum.courses).map((id) => ObjectID(id));
+
+    curriculums.insert({ title: curriculum.title, courses }, (error, doc) => {
 
       if (error) console.log('ERROR');
+
+      curriculums.find({ title: curriculum.title }).toArray((error, doc) => {
+
+        const curID = doc[0]._id;
+
+        courses.forEach((id) => {
+
+          database.collection('courses').find({ _id: id }).toArray((error, doc) => {
+
+            const toUpdate = doc[0];
+
+            if (!toUpdate.curriculumNames) toUpdate.curriculumNames = {};
+
+            toUpdate.curriculumNames[curID] = curriculum.courses[id].maidenName;
+
+            database.collection('courses').update({ _id: id }, toUpdate);
+          });
+        });
+      });
     });
   }
 }
@@ -89,11 +112,21 @@ const fetchCoursesForOneCurriculum = (req, res) => {
 
     const curriculums = database.collection('curriculums');
 
+    const courses = database.collection('courses');
+
     curriculums.find({ title: req.body.data }).toArray((error, doc) => {
 
       if (error) console.log('ERROR');
 
-      else res.json(doc[0]);
+      else {
+
+        courses.find({ _id: { $in: doc[0].courses }}).toArray((error, docs) => {
+
+            if (error) console.log('ERROR');
+
+            else res.json({ title: doc[0].title, courses: docs, _id: doc[0]._id });
+        });
+      }
     });
   }
 };
