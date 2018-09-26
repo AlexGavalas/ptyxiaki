@@ -61,7 +61,11 @@ const createCurriculum = (req, res) => {
 
             if (!toUpdate.curriculumNames) toUpdate.curriculumNames = {};
 
+            if (!toUpdate.ids) toUpdate.ids = {};
+
             toUpdate.curriculumNames[curID] = curriculum.courses[id].maidenName;
+
+            toUpdate.ids[curID] = curriculum.courses[id].id;
 
             database.collection('courses').update({ _id: id }, toUpdate);
           });

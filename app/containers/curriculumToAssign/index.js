@@ -42,7 +42,7 @@ class CurriculumToAssign extends React.Component {
               <tr key={coursesToAssign[id]._id} onClick={() => this.goToCoursePage(coursesToAssign[id])}>
                 <td>{coursesToAssign[id].curriculumNames[curriculumInfo.curID]}</td>
                 <td>{coursesToAssign[id].semester}</td>
-                <td>{coursesToAssign[id].id}</td>
+                <td>{coursesToAssign[id].ids[curriculumInfo.curID]}</td>
               </tr>
             ))}
           </tbody>

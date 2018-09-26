@@ -1,9 +1,16 @@
 @media all and (min-width: 480px) {
   .Login {
+    margin: 0 auto;
     padding: 60px 0;
   }
 
   .Login form {
+    margin: 0 auto;
+    max-width: 420px;
+  }
+
+  .btn-group {
+    display: flex !important;
     margin: 0 auto;
     max-width: 420px;
   }
