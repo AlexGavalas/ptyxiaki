@@ -54,7 +54,7 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
     })
   }));
 
-  app.post('/login', passport.authenticate('local', { successRedirect: '/' }));
+  app.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/' }));
   app.post('/createUser', (req, res) => user.createUser(req.body));
   app.post('/updateUser', (req, res) => user.updateUser(req.body));
   app.post('/deleteUser', (req, res) => user.deleteUser(req.body));
@@ -67,8 +67,9 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
   app.post('/deleteProfessor', professors.deleteProfessor);
   app.post('/deleteCourse', courses.deleteCourse);
   app.post('/setProfessorToCourse', courses.setProfessorToCourse);
+  app.post('/removeProfFromCourse', courses.removeProfFromCourse);
 
-  app.get('/user', (req, res) => res.json(req.user));
+  app.get('/user', (req, res) => res.json({ user: req.user || null }));
   app.get('/allUsers', user.getAllUsers);
   app.get('/getAllCourses', courses.getAllCourses);
   app.get('/getCurriculums', courses.getCurriculums);

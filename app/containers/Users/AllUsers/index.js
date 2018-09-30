@@ -40,7 +40,7 @@ class AllUsers extends React.Component {
           <tbody>
             {users.map((user) => (
               <tr onClick={() => this.goToEdit(user)} key={user.username}>
-                {Object.keys(user).map((key, i) => (<td key={user.username + i}>{user[key]}</td>))}
+                {Object.keys(user).map((key, i) => (<td key={i}>{user[key]}</td>))}
               </tr>
             ))}
           </tbody>

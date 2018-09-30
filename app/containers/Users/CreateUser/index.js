@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { Button, FormGroup, FormControl, ControlLabel, DropdownButton, MenuItem } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
@@ -16,6 +16,8 @@ class CreateUser extends React.Component {
     this.setState({ [name]: value });
   }
 
+  handleDropdown = (role) => this.setState({ role });
+
   handleSubmit = () => {
 
     this.props.dispatch(postUser(this.state));
@@ -29,8 +31,13 @@ class CreateUser extends React.Component {
       name: 'Όνομα',
       surname: 'Επώνυμο',
       password: 'Κωδικός',
-      role: 'Ρόλος',
       username: 'Username',
+    };
+
+    const roles = {
+      admin: 'Διαχειριστής',
+      professor: 'Υπεύθυνος Τομέα',
+      secretary: 'Γραμματεία',
     };
 
     return (
@@ -48,6 +55,15 @@ class CreateUser extends React.Component {
                 />
               </FormGroup>
             ))}
+            <DropdownButton
+              bsSize="large"
+              bsStyle="info"
+              title={roles[this.state.role] || 'Επιλέξτε ρόλο'}
+              noCaret={true}
+              id={0}>
+                {Object.keys(roles).map((role) => (<MenuItem key={role} onClick={() => this.handleDropdown(role)}>{roles[role]}</MenuItem>))}
+            </DropdownButton>
+            <br />
             <Button
               block
               onClick={this.handleSubmit}

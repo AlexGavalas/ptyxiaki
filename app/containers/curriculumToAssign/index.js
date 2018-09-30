@@ -37,10 +37,7 @@ class CurriculumToAssign extends React.Component {
 
         const thisHours = pick(hours[assigned], keys);
 
-        Object.keys(thisHours).forEach((hour) => {
-
-          remaining[hour] -= thisHours[hour];
-        });
+        Object.keys(thisHours).forEach((hour) => remaining[hour] -= thisHours[hour]);
     });
 
     let totalRemaining = total;
@@ -54,7 +51,7 @@ class CurriculumToAssign extends React.Component {
 
     const { curriculumInfo, coursesToAssign } = this.props;
 
-    const headers = ['Όνομα', 'Εξάμηνο', 'ID', 'Πρόοδος'];
+    const headers = ['Όνομα', 'Εξάμηνο', 'ID', 'Πρόοδος Ανάθεσης'];
 
     if (!curriculumInfo || !coursesToAssign) return null;
 
@@ -80,7 +77,7 @@ class CurriculumToAssign extends React.Component {
       </div>
     );
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => ({ dispatch });
 

@@ -16,7 +16,7 @@ export function * setUser () {
 
   if (!response.data.error) {
 
-    yield put(ACTIONS.setUserInfo(response.data));
+    yield put(ACTIONS.setUserInfo(response.data.user));
   }
 }
 
@@ -112,4 +112,8 @@ export function * deleteCourse (action) {
 
 export function * setProfessorToCourse (action) {
   yield call(api.setProfessorToCourse, action.data);
+}
+
+export function * removeProfFromCourse (action) {
+  yield call(api.removeProfFromCourse, action.data);
 }

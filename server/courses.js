@@ -175,4 +175,26 @@ const setProfessorToCourse = (req, res) => {
   }
 };
 
-module.exports = { getAllCourses, setCourse, createCurriculum, getCurriculums, updateCourse, fetchCoursesForOneCurriculum, deleteCourse, setProfessorToCourse };
+const removeProfFromCourse = (req, res) => {
+
+  const database = db.get();
+
+  if (database) {
+
+    const courses = database.collection('courses');
+
+    courses.find({ _id: ObjectID(req.body.courseId) }).toArray((error, doc) => {
+
+      if (error) console.log('ERROR');
+
+      else {
+
+        delete doc[0].hours[req.body.professor._id];
+
+        courses.update({ _id: ObjectID(req.body.courseId) }, doc[0]);
+      }
+    });
+  }
+};
+
+module.exports = { getAllCourses, setCourse, createCurriculum, getCurriculums, updateCourse, fetchCoursesForOneCurriculum, deleteCourse, setProfessorToCourse, removeProfFromCourse };

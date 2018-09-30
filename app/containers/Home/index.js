@@ -48,7 +48,7 @@ class Home extends React.Component {
         <BrowserRouter>
           <Switch>
 
-            <Route exact path="/" component={Panel} />
+            <Route exact path="/" component={Panel} user={user} />
 
             <Route exact path="/users" component={AllUsers} />
             <Route exact path="/editUser" component={EditUser} />

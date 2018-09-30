@@ -11,7 +11,7 @@ function reducer(state = initialState, action) {
     case C.SET_USER_INFO:
       return {
         ...state,
-        username: action.data.username,
+        username: action.data,
       };
 
     case C.SET_ALL_USERS:

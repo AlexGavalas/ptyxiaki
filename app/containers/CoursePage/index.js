@@ -2,11 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
-import { Table, DropdownButton, MenuItem, Button } from 'react-bootstrap';
+import { Table, DropdownButton, MenuItem, Button, Glyphicon } from 'react-bootstrap';
 
-import InfoTable from 'components/InfoTable';
 import { selectCourseToEdit, selectAllProfessors } from 'common/selectors';
-import { getAllProfessors, setProfessorToCourse } from 'common/actions';
+import { getAllProfessors, setProfessorToCourse, removeProfFromCourse } from 'common/actions';
 
 const pick = (object, fields) => fields.reduce((acc, val) => (acc[val] = object[val], acc), {});
 
@@ -55,6 +54,13 @@ class CoursePage extends React.Component {
     }
   }
 
+  removeProf = (prof) => {
+
+    this.props.dispatch(removeProfFromCourse(prof));
+
+    this.props.history.push('/curriculum');
+  }
+
   handleDropdown = (professor) => this.setState({ professor });
 
   assign = () => {
@@ -63,7 +69,7 @@ class CoursePage extends React.Component {
 
     this.props.dispatch(setProfessorToCourse(this.state));
 
-    this.props.history.push('/');
+    this.props.history.push('/curriculum');
   }
 
   render() {
@@ -83,6 +89,12 @@ class CoursePage extends React.Component {
     const hours = Object.keys(course).filter((f) => f.endsWith('Hours'));
 
     const menu = [0, 1, 2];
+
+    const headers2 = ['Θεωρία', 'Εργαστήριο', 'Φροντιστήριο'];
+
+    const subheaders = ['Διδάσκοντας', 'Ώρες', 'Τμήματα', 'Ώρες', 'Τμήματα', 'Ώρες', 'Τμήματα', ''];
+
+    const hours2 = ['theoryHours', 'theorySegments', 'labHours', 'labSegments', 'tutorialHours', 'tutorialSegments'];
 
     return (
       <div className="Login">
@@ -116,7 +128,28 @@ class CoursePage extends React.Component {
               {professors.map((prof) => (<MenuItem onClick={() => this.handleDropdown(prof)} key={prof._id}>{`${prof.name} ${prof.surname}`}</MenuItem>))}
           </DropdownButton>
         </div>
-        <InfoTable professors={course.hours} />
+        {course.hours && Object.keys(course.hours).length &&
+          <Table>
+            <thead>
+              <tr>
+                <th></th>
+                {headers2.map((header, i) => (<th key={i} colSpan={2}>{header}</th>))}
+              </tr>
+              <tr>
+                {subheaders.map((h, i) => (<th key={i}>{h}</th>))}
+              </tr>
+            </thead>
+            <tbody>
+              {Object.keys(course.hours).map((key, i) => (
+                <tr key={i}>
+                  <td>{`${course.hours[key].professor.name} ${course.hours[key].professor.surname}`}</td>
+                  {hours2.map((hour, i) => (<td key={i}>{course.hours[key][hour]}</td>))}
+                  <td onClick={() => this.removeProf(course.hours[key])}><Glyphicon glyph="glyphicon glyphicon-remove"/></td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        }
         <br />
         <Button
           block

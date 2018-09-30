@@ -22,4 +22,5 @@ export default function * watcher () {
   yield takeLatest([C.DELETE_PROFESSOR], GEN.deleteProfessor);
   yield takeLatest([C.DELETE_COURSE], GEN.deleteCourse);
   yield takeLatest([C.SET_PROFESSOR_TO_COURSE], GEN.setProfessorToCourse);
+  yield takeLatest([C.REMOVE_PROF_FROM_COURSE], GEN.removeProfFromCourse);
 }

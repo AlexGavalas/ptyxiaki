@@ -33,6 +33,7 @@ export const fetchCoursesForOneCurriculum = (data) => ({ type: C.FETCH_COURSES_F
 export const setCoursesToAssign = (data) => ({ type: C.SET_COURSES_TO_ASSIGN, data });
 export const deleteCourse = (data) => ({ type: C.DELETE_COURSE, data });
 export const setProfessorToCourse = (data) => ({ type: C.SET_PROFESSOR_TO_COURSE, data });
+export const removeProfFromCourse = (data) => ({ type: C.REMOVE_PROF_FROM_COURSE, data });
 
 // Professors
 export const getAllProfessors = () => ({ type: C.GET_ALL_PROFESSORS });
