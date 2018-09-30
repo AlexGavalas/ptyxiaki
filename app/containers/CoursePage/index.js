@@ -4,8 +4,11 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Table, DropdownButton, MenuItem, Button } from 'react-bootstrap';
 
+import InfoTable from 'components/InfoTable';
 import { selectCourseToEdit, selectAllProfessors } from 'common/selectors';
-import { getAllProfessors } from 'common/actions';
+import { getAllProfessors, setProfessorToCourse } from 'common/actions';
+
+const pick = (object, fields) => fields.reduce((acc, val) => (acc[val] = object[val], acc), {});
 
 class CoursePage extends React.Component {
 
@@ -22,6 +25,24 @@ class CoursePage extends React.Component {
   componentDidMount() {
 
     this.props.dispatch(getAllProfessors());
+
+    const keys = ['labHours', 'theoryHours', 'tutorialHours', 'labSegments', 'theorySegments', 'tutorialSegments'];
+
+    const remaining = pick(this.props.course, keys);
+
+    const hours = this.props.course.hours || {};
+
+    Object.keys(hours).forEach((assigned) => {
+
+        const thisHours = pick(hours[assigned], keys);
+
+        Object.keys(thisHours).forEach((hour) => {
+
+          remaining[hour] -= thisHours[hour];
+        });
+    });
+
+    this.setState({ courseId: this.props.course._id, remaining });
   }
 
   handleChange = (event) => {
@@ -34,20 +55,26 @@ class CoursePage extends React.Component {
     }
   }
 
-  handleDropdown = (name) => this.setState({ professor: name });
+  handleDropdown = (professor) => this.setState({ professor });
 
   assign = () => {
-    console.log(this.props);
-    console.log(this.state);
+
+    delete this.state.remaining;
+
+    this.props.dispatch(setProfessorToCourse(this.state));
+
+    this.props.history.push('/');
   }
 
   render() {
 
     const { course, professors } = this.props;
 
-    if (!course || !professors) return null;
+    const { remaining } = this.state;
 
-    const headers = ['Κατηγορία', 'Τμήματα', 'Ώρες'];
+    if (!course || !professors || !remaining) return null;
+
+    const headers = ['Κατηγορία', 'Τμήματα', 'Απομένουν', 'Σύνολο', 'Ώρες', 'Απομένουν', 'Σύνολο'];
 
     const categories = ['Θεωρία', 'Εργαστήριο', 'Φροντιστήριο'];
 
@@ -62,7 +89,7 @@ class CoursePage extends React.Component {
         <Table>
           <thead>
             <tr>
-              {headers.map((header) => (<th key={header}>{header}</th>))}
+              {headers.map((header, i) => (<th key={i}>{header}</th>))}
             </tr>
           </thead>
           <tbody>
@@ -70,7 +97,11 @@ class CoursePage extends React.Component {
               <tr key={index}>
                 <td>{categories[index]}</td>
                 <td><input onChange={this.handleChange} name={segments[index]} value={this.state[segments[index]]} /></td>
+                <td>{remaining[segments[index]]}</td>
+                <td>{course[segments[index]]}</td>
                 <td><input onChange={this.handleChange} name={hours[index]} value={this.state[hours[index]]} /></td>
+                <td>{remaining[hours[index]]}</td>
+                <td>{course[hours[index]]}</td>
               </tr>
             ))}
           </tbody>
@@ -81,11 +112,12 @@ class CoursePage extends React.Component {
             bsStyle="info"
             title={`${this.state.professor.name} ${this.state.professor.surname}`}
             noCaret={true}
-            id={0}
-          >
-            {professors.map((prof) => (<MenuItem onClick={() => this.handleDropdown(prof)} key={prof.name + prof.surname}>{`${prof.name} ${prof.surname}`}</MenuItem>))}
+            id={0}>
+              {professors.map((prof) => (<MenuItem onClick={() => this.handleDropdown(prof)} key={prof._id}>{`${prof.name} ${prof.surname}`}</MenuItem>))}
           </DropdownButton>
         </div>
+        <InfoTable professors={course.hours} />
+        <br />
         <Button
           block
           bsSize="large"

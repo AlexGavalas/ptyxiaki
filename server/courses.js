@@ -145,6 +145,34 @@ const deleteCourse = (req, res) => {
 
     courses.remove({ _id: ObjectID(req.body._id) });
   }
-}
+};
 
-module.exports = { getAllCourses, setCourse, createCurriculum, getCurriculums, updateCourse, fetchCoursesForOneCurriculum, deleteCourse };
+const setProfessorToCourse = (req, res) => {
+
+  const database = db.get();
+
+  if (database) {
+
+    const courses = database.collection('courses');
+
+    courses.find({ _id: ObjectID(req.body.courseId) }).toArray((error, doc) => {
+
+      if (error) console.log('ERROR');
+
+      else {
+
+        const toUpdate = doc[0];
+
+        if (!toUpdate.hours) toUpdate.hours = {};
+
+        if (!toUpdate.hours[req.body.professor._id]) toUpdate.hours[req.body.professor._id] = req.body;
+
+        else Object.keys(req.body).forEach((item) => typeof req.body[item] !== 'object' ? toUpdate.hours[req.body.professor._id][item] += req.body[item] : null);
+
+        courses.update({ _id: ObjectID(req.body.courseId) }, toUpdate);
+      }
+    });
+  }
+};
+
+module.exports = { getAllCourses, setCourse, createCurriculum, getCurriculums, updateCourse, fetchCoursesForOneCurriculum, deleteCourse, setProfessorToCourse };
