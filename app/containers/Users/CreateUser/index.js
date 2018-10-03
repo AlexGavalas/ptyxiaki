@@ -3,7 +3,7 @@ import { Button, FormGroup, FormControl, ControlLabel, DropdownButton, MenuItem 
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 
-import { postUser } from 'common/actions';
+import { createUser } from '../actions';
 
 class CreateUser extends React.Component {
 
@@ -20,7 +20,7 @@ class CreateUser extends React.Component {
 
   handleSubmit = () => {
 
-    this.props.dispatch(postUser(this.state));
+    this.props.dispatch(createUser(this.state));
 
     this.props.history.push('/');
   }

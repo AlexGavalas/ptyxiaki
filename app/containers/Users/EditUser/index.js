@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { updateUser, deleteUser, addUserToEdit } from 'common/actions';
-import { selectNewUser } from 'common/selectors';
+import { updateUser, deleteUser } from '../actions';
+import { selectNewUser } from '../selectors';
 
 class EditUser extends React.Component {
 
@@ -13,11 +13,7 @@ class EditUser extends React.Component {
 
   componentDidMount() {
 
-    const { newUser } = this.props;
-
-    newUser.originalUsername = newUser.username;
-
-    this.setState(newUser);
+    this.setState(this.props.newUser);
   }
 
   handleInput = (event) => {
@@ -31,14 +27,12 @@ class EditUser extends React.Component {
 
     this.props.dispatch(updateUser(this.state));
 
-    this.props.dispatch(addUserToEdit(null));
-
     this.props.history.push('/');
   }
 
   deleteUser = () => {
 
-    this.props.dispatch(deleteUser(this.state.originalUsername));
+    this.props.dispatch(deleteUser(this.props.newUser));
 
     this.props.history.push('/');
   }

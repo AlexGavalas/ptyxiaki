@@ -4,14 +4,14 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Table } from 'react-bootstrap';
 
-import { fetchAllUsers, addUserToEdit } from 'common/actions';
-import { selectAllUsers } from 'common/selectors';
+import { getAllUsers, addUserToEdit } from '../actions';
+import { selectAllUsers } from '../selectors';
 
 class AllUsers extends React.Component {
 
   componentDidMount() {
 
-    this.props.dispatch(fetchAllUsers());
+    this.props.dispatch(getAllUsers());
   }
 
   goToEdit = (user) => {
@@ -27,7 +27,7 @@ class AllUsers extends React.Component {
 
     if (!users) return null;
 
-    const headers = Object.keys(users[0]);
+    const headers = ['name', 'surname', 'username', 'role', 'password'];
 
     return (
       <div>
@@ -40,7 +40,7 @@ class AllUsers extends React.Component {
           <tbody>
             {users.map((user) => (
               <tr onClick={() => this.goToEdit(user)} key={user.username}>
-                {Object.keys(user).map((key, i) => (<td key={i}>{user[key]}</td>))}
+                {headers.map((key, i) => (<td key={i}>{user[key]}</td>))}
               </tr>
             ))}
           </tbody>

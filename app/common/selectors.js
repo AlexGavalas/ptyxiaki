@@ -1,8 +1,4 @@
-export const selectAllUsers = (state) => state.get('app').users;
-
 export const selectUser = (state) => state.get('app').username;
-
-export const selectNewUser = (state) => state.get('app').newUser;
 
 export const selectAllCourses = (state) => state.get('app').courses;
 

@@ -9,7 +9,8 @@ const Strategy = require('passport-local').Strategy;
 const user = require('../users');
 const courses = require('../courses');
 const professors = require('../professors');
-const roles = require('../roles.js');
+const roles = require('../roles');
+const userRouter = require('../routes/userRoutes');
 
 function createWebpackMiddleware(compiler, publicPath) {
   return webpackDevMiddleware(compiler, {
@@ -55,10 +56,9 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
     })
   }));
 
+  app.use(userRouter);
+
   app.post('/login', passport.authenticate('local', { successRedirect: '/', failureRedirect: '/' }));
-  app.post('/createUser', (req, res) => user.createUser(req.body));
-  app.post('/updateUser', (req, res) => user.updateUser(req.body));
-  app.post('/deleteUser', (req, res) => user.deleteUser(req.body));
   app.post('/setCourse', courses.setCourse);
   app.post('/createCurriculum', courses.createCurriculum);
   app.post('/updateCourse', courses.updateCourse);
@@ -74,7 +74,6 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
   app.post('/deleteRole', roles.deleteRole);
 
   app.get('/user', (req, res) => res.json({ user: req.user || null }));
-  app.get('/allUsers', user.getAllUsers);
   app.get('/getAllCourses', courses.getAllCourses);
   app.get('/getCurriculums', courses.getCurriculums);
   app.get('/getAllProfessors', professors.getAll);

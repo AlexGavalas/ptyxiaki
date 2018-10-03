@@ -20,28 +20,6 @@ export function * setUser () {
   }
 }
 
-export function * fetchAllUsers () {
-
-  const response = yield call(api.fetchAllUsers);
-
-  if (!response.data.error) {
-
-      yield put(ACTIONS.setAllUsers(response.data));
-  }
-}
-
-export function * createUser (action) {
-  yield call(api.createUser, action.data);
-}
-
-export function * updateUser (action) {
-  yield call(api.updateUser, action.user);
-}
-
-export function * deleteUser (action) {
-  yield call(api.deleteUser, action.username);
-}
-
 export function * createCurriculum (action) {
   yield call(api.createCurriculum, action.data);
 }

@@ -14,18 +14,6 @@ function reducer(state = initialState, action) {
         username: action.data,
       };
 
-    case C.SET_ALL_USERS:
-      return {
-        ...state,
-        users: action.users
-      };
-
-    case C.ADD_USER_TO_EDIT:
-      return {
-        ...state,
-        newUser: action.user,
-      };
-
     case C.SET_ALL_COURSES:
       return {
         ...state,

@@ -1,3 +1,4 @@
+const ObjectID = require('mongodb').ObjectID;
 const db = require('./db');
 
 const getUser = (credentials, cb) => {
@@ -19,7 +20,7 @@ const getUser = (credentials, cb) => {
   else cb(true);
 };
 
-const createUser = (data) => {
+const createUser = (req, res) => {
 
   const database = db.get();
 
@@ -27,10 +28,7 @@ const createUser = (data) => {
 
     const users = database.collection('users');
 
-    users.insert(data, (error) => {
-
-      if (error) console.log('ERROR');
-    });
+    users.insert(req.body);
   }
 };
 
@@ -42,36 +40,32 @@ const getAllUsers = (req, res) => {
 
     const users = database.collection('users');
 
-    users.find({}).toArray((error, docs) => {
+    users.find().toArray((error, docs) => {
 
-      if (error) console.log('ERROR');
+      if (error) res.json({ error: true });
 
-      else {
-
-        docs.forEach((doc) => {
-          delete doc._id;
-          delete doc.originalUsername;
-        });
-
-        res.json(docs);
-      }
+      else res.json(docs);
     });
   }
 };
 
-const updateUser = (user) => {
+const updateUser = (req, res) => {
 
   const database = db.get();
 
   if (database) {
 
-      const users = database.collection('users');
+    const user = req.body;
 
-      users.update({ username: user.originalUsername }, user);
+    user._id = ObjectID(user._id);
+
+    const users = database.collection('users');
+
+    users.update({ _id: user._id }, user);
   }
 };
 
-const deleteUser = (data) => {
+const deleteUser = (req, res) => {
 
   const database = db.get();
 
@@ -79,7 +73,7 @@ const deleteUser = (data) => {
 
       const users = database.collection('users');
 
-      users.remove({ username: data.data });
+      users.remove({ _id: ObjectID(req.body._id) });
   }
 };
 
