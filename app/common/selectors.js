@@ -23,3 +23,7 @@ export const selectAllProfessors = (state) => state.get('app').professors;
 export const selectProfessorToEdit = (state) => state.get('app').professorToEdit;
 
 export const selectCurriculumInfo = (state) => state.get('app').curriculumInfo;
+
+export const selectAllRoles = (state) => state.get('app').roles;
+
+export const selectRole = (state) => state.get('app').roleToEdit;

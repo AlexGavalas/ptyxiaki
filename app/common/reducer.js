@@ -81,6 +81,18 @@ function reducer(state = initialState, action) {
         professorToEdit: action.data,
       };
 
+    case C.SET_ALL_ROLES:
+      return {
+        ...state,
+        roles: action.data,
+      };
+
+    case C.ADD_ROLE_TO_EDIT:
+      return {
+        ...state,
+        roleToEdit: action.data,
+      };
+
     default:
       return state;
   }

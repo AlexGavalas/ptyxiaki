@@ -117,3 +117,25 @@ export function * setProfessorToCourse (action) {
 export function * removeProfFromCourse (action) {
   yield call(api.removeProfFromCourse, action.data);
 }
+
+export function * createRole (action) {
+  yield call(api.createRole, action.data);
+}
+
+export function * fetchAllRoles () {
+
+  const response = yield call(api.fetchAllRoles);
+
+  if (!response.data.error) {
+
+    yield put(ACTIONS.setAllRoles(response.data));
+  }
+}
+
+export function * updateRole (action) {
+  yield call(api.updateRole, action.data);
+}
+
+export function * deleteRole (action) {
+  yield call(api.deleteRole, action.data);
+}

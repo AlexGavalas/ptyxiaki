@@ -40,3 +40,11 @@ export const CREATE_PROFESSOR = 'CREATE_PROFESSOR';
 export const EDIT_PROFESSOR = 'EDIT_PROFESSOR';
 export const UPDATE_PROFESSOR = 'UPDATE_PROFESSOR';
 export const DELETE_PROFESSOR = 'DELETE_PROFESSOR';
+
+// Roles
+export const CREATE_ROLE = 'CREATE_ROLE';
+export const FETCH_ALL_ROLES = 'FETCH_ALL_ROLES';
+export const SET_ALL_ROLES = 'SET_ALL_ROLES';
+export const ADD_ROLE_TO_EDIT = 'ADD_ROLE_TO_EDIT';
+export const UPDATE_ROLE = 'UPDATE_ROLE';
+export const DELETE_ROLE = 'DELETE_ROLE';

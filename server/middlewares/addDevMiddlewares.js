@@ -9,6 +9,7 @@ const Strategy = require('passport-local').Strategy;
 const user = require('../users');
 const courses = require('../courses');
 const professors = require('../professors');
+const roles = require('../roles.js');
 
 function createWebpackMiddleware(compiler, publicPath) {
   return webpackDevMiddleware(compiler, {
@@ -68,12 +69,16 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
   app.post('/deleteCourse', courses.deleteCourse);
   app.post('/setProfessorToCourse', courses.setProfessorToCourse);
   app.post('/removeProfFromCourse', courses.removeProfFromCourse);
+  app.post('/newRole', roles.createRole);
+  app.post('/updateRole', roles.updateRole);
+  app.post('/deleteRole', roles.deleteRole);
 
   app.get('/user', (req, res) => res.json({ user: req.user || null }));
   app.get('/allUsers', user.getAllUsers);
   app.get('/getAllCourses', courses.getAllCourses);
   app.get('/getCurriculums', courses.getCurriculums);
   app.get('/getAllProfessors', professors.getAll);
+  app.get('/fetchAllRoles', roles.fetchAllRoles);
 
   app.get('/logout', (req, res) => {
 

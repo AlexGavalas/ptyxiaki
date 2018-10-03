@@ -20,6 +20,8 @@ class Panel extends React.Component {
         <Button bsStyle="primary" bsSize="large" href="/createUser">Δημιουργία Νέου Χρήστη</Button>
         <Button bsStyle="primary" bsSize="large" href="/professors">Όλοι οι Καθηγητές</Button>
         <Button bsStyle="primary" bsSize="large" href="/createProfessor">Δημιουργία Καθηγητή</Button>
+        <Button bsStyle="primary" bsSize="large" href="/createRole">Δημιουργία Ρόλου</Button>
+        <Button bsStyle="primary" bsSize="large" href="/allRoles">Όλοι οι Ρόλοι</Button>
       </ButtonToolbar>
     );
 

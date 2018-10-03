@@ -42,3 +42,11 @@ export const createProfessor = (data) => ({ type: C.CREATE_PROFESSOR, data });
 export const editProfessor = (data) => ({ type: C.EDIT_PROFESSOR, data });
 export const updateProfessor = (data) => ({ type: C.UPDATE_PROFESSOR, data });
 export const deleteProfessor = (data) => ({ type: C.DELETE_PROFESSOR, data });
+
+//Roles
+export const createRole = (data) => ({ type: C.CREATE_ROLE, data });
+export const fetchAllRoles = () => ({ type: C.FETCH_ALL_ROLES });
+export const setAllRoles = (data) => ({ type: C.SET_ALL_ROLES, data });
+export const addRoleToEdit = (data) => ({ type: C.ADD_ROLE_TO_EDIT, data });
+export const updateRole = (data) => ({ type: C.UPDATE_ROLE, data });
+export const deleteRole = (data) => ({ type: C.DELETE_ROLE, data });

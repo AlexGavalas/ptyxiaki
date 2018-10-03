@@ -14,9 +14,13 @@ import AllCurriculums from '../AllCurriculums';
 import CurriculumToAssign from '../curriculumToAssign';
 import CoursePage from '../CoursePage';
 
+import AllRoles from 'containers/Roles/AllRoles';
+import CreateRole from 'containers/Roles/CreateRole';
+import EditRole from 'containers/Roles/EditRole';
+
 import AllCourses from 'containers/Courses/AllCourses';
-import EditCourse from 'containers/Courses/EditCourse';
 import CreateCourse from 'containers/Courses/CreateCourse';
+import EditCourse from 'containers/Courses/EditCourse';
 
 import AllUsers from 'containers/Users/AllUsers';
 import CreateUser from 'containers/Users/CreateUser';
@@ -61,6 +65,10 @@ class Home extends React.Component {
             <Route exact path="/professors" component={AllProfessors} />
             <Route exact path="/editProfessor" component={EditProfessor} />
             <Route exact path="/createProfessor" component={CreateProfessor} />
+
+            <Route exact path="/allRoles" component={AllRoles} />
+            <Route exact path="/createRole" component={CreateRole} />
+            <Route exact path="/editRole" component={EditRole} />
 
             <Route exact path="/createCurriculum" component={CreateCurriculum} />
             <Route exact path="/curriculums" component={AllCurriculums} />
