@@ -7,9 +7,7 @@ import { createRole } from 'common/actions';
 
 class CreateRole extends React.Component {
 
-  state = {
-    role: ''
-  }
+  state = { role: '' }
 
   handleInput = (event) => {
 

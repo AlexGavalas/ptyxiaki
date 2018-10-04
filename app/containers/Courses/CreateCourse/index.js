@@ -1,13 +1,20 @@
 import React from 'react';
-import { FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
+import { FormGroup, ControlLabel, FormControl, Button, DropdownButton, MenuItem, Checkbox } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
 
-import { setCourse } from 'common/actions';
+import { setCourse, fetchAllRoles } from 'common/actions';
+import { selectAllRoles } from 'common/selectors';
 
 class CreateCourse extends React.Component {
 
-  state = {};
+  state = { role: '', provided: true }
+
+  componentDidMount() {
+
+    this.props.dispatch(fetchAllRoles());
+  }
 
   handleInput = (event) => {
 
@@ -16,6 +23,10 @@ class CreateCourse extends React.Component {
     this.setState({ [name]: (name === 'name') ? value : +value });
   }
 
+  handleDropdown = (role) => this.setState({ role });
+
+  handeCheckbox = () => this.setState({ provided: !this.state.provided });
+
   handleSubmit = () => {
 
     this.props.dispatch(setCourse(this.state));
@@ -23,7 +34,11 @@ class CreateCourse extends React.Component {
     this.props.history.push('/');
   }
 
-  render() {
+  render () {
+
+    const { roles } = this.props;
+
+    if (!roles) return null;
 
     const fields = {
       name: 'Τίτλος Μαθήματος',
@@ -51,6 +66,18 @@ class CreateCourse extends React.Component {
                 />
               </FormGroup>
             ))}
+            <p>Επιλέξτε ένα πρωτεύον ρόλο για τις αναθέσεις σε αυτό το μάθημα:</p>
+            <DropdownButton
+              bsSize="large"
+              bsStyle="info"
+              title={this.state.role.role || 'Επιλέξτε ρόλο'}
+              noCaret={true}
+              id={0}>
+                {roles.map((role) => (<MenuItem key={role._id} onClick={() => this.handleDropdown(role)}>{role.role}</MenuItem>))}
+            </DropdownButton>
+            <br />
+            <Checkbox onChange={this.handeCheckbox} checked={this.state.provided}>Προσφέρεται το μάθημα φέτος?</Checkbox>
+            <br />
             <Button
               block
               onClick={this.handleSubmit}
@@ -67,6 +94,10 @@ class CreateCourse extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({ dispatch });
 
-const withConnect = connect(mapDispatchToProps);
+const mapStateToProps = () => createStructuredSelector({
+  roles: selectAllRoles,
+});
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(withConnect)(CreateCourse);

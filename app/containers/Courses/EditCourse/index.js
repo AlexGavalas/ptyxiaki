@@ -1,19 +1,21 @@
 import React from 'react';
-import { FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
+import { FormGroup, ControlLabel, FormControl, Button, DropdownButton, MenuItem, Checkbox } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { updateCourse, deleteCourse } from 'common/actions';
-import { selectCourseToEdit } from 'common/selectors';
+import { updateCourse, deleteCourse, fetchAllRoles } from 'common/actions';
+import { selectCourseToEdit, selectAllRoles } from 'common/selectors';
 
 class EditCourse extends React.Component {
 
-  state = {};
+  state = { role: '' }
 
   componentDidMount() {
 
     this.setState(this.props.courseToEdit);
+
+    this.props.dispatch(fetchAllRoles());
   }
 
   handleInput = (event) => {
@@ -22,6 +24,10 @@ class EditCourse extends React.Component {
 
     this.setState({ [name]: (name === 'name') ? value : +value });
   }
+
+  handleDropdown = (role) => this.setState({ role });
+
+  handeCheckbox = () => this.setState({ provided: !this.state.provided });
 
   removeCourse = () => {
 
@@ -38,6 +44,10 @@ class EditCourse extends React.Component {
   }
 
   render() {
+
+    const { roles } = this.props;
+
+    if (!roles) return null;
 
     const fields = {
       name: 'Τίτλος Μαθήματος',
@@ -61,10 +71,22 @@ class EditCourse extends React.Component {
                 <FormControl
                   name={field}
                   autoFocus={i === 0}
-                  value={this.state[field] || ''}
+                  defaultValue={this.state[field] || ''}
                 />
               </FormGroup>
             ))}
+            <p>Επιλέξτε ένα πρωτεύον ρόλο για τις αναθέσεις σε αυτό το μάθημα:</p>
+            <DropdownButton
+              bsSize="large"
+              bsStyle="info"
+              title={this.state.role.role || 'Επιλέξτε ρόλο'}
+              noCaret={true}
+              id={0}>
+                {roles.map((role) => (<MenuItem key={role._id} onClick={() => this.handleDropdown(role)}>{role.role}</MenuItem>))}
+            </DropdownButton>
+            <br />
+            <Checkbox onChange={this.handeCheckbox} checked={this.state.provided}>Προσφέρεται το μάθημα φέτος?</Checkbox>
+            <br />
             <Button
               block
               onClick={this.removeCourse}
@@ -90,6 +112,7 @@ const mapDispatchToProps = (dispatch) => ({ dispatch });
 
 const mapStateToProps = () => createStructuredSelector({
   courseToEdit: selectCourseToEdit,
+  roles: selectAllRoles
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

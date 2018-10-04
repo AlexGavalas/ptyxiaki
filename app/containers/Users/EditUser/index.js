@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { Button, FormGroup, FormControl, ControlLabel, DropdownButton, MenuItem } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
@@ -7,13 +7,18 @@ import { createStructuredSelector } from 'reselect';
 import { updateUser, deleteUser } from '../actions';
 import { selectNewUser } from '../selectors';
 
+import { fetchAllRoles } from 'common/actions';
+import { selectAllRoles } from 'common/selectors';
+
 class EditUser extends React.Component {
 
-  state = {};
+  state = { role: '' };
 
   componentDidMount() {
 
     this.setState(this.props.newUser);
+
+    this.props.dispatch(fetchAllRoles());
   }
 
   handleInput = (event) => {
@@ -22,6 +27,8 @@ class EditUser extends React.Component {
 
     this.setState({ [name]: value });
   }
+
+  handleDropdown = (role) => this.setState({ role });
 
   handleSubmit = () => {
 
@@ -39,11 +46,14 @@ class EditUser extends React.Component {
 
   render() {
 
+    const { roles } = this.props;
+
+    if (!roles) return null;
+
     const fields = {
       name: 'Όνομα',
       surname: 'Επώνυμο',
       password: 'Κωδικός',
-      role: 'Ρόλος',
       username: 'Username',
     };
 
@@ -58,10 +68,19 @@ class EditUser extends React.Component {
                 <FormControl
                   name={field}
                   autoFocus={i === 0}
-                  value={this.state[field] || ''}
+                  defaultValue={this.state[field] || ''}
                 />
               </FormGroup>
             ))}
+            <DropdownButton
+              bsSize="large"
+              bsStyle="info"
+              title={this.state.role.role || 'Επιλέξτε ρόλο'}
+              noCaret={true}
+              id={0}>
+                {roles.map((role) => (<MenuItem key={role._id} onClick={() => this.handleDropdown(role)}>{role.role}</MenuItem>))}
+            </DropdownButton>
+            <br />
             <Button
               block
               bsSize="large"
@@ -87,7 +106,8 @@ class EditUser extends React.Component {
 const mapDispatchToProps = (dispatch) => ({ dispatch });
 
 const mapStateToProps = () => createStructuredSelector({
-  newUser: selectNewUser
+  newUser: selectNewUser,
+  roles: selectAllRoles
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

@@ -42,14 +42,13 @@ class Panel extends React.Component {
     );
 
     const buttonsMenu = {
-      admin: adminButtons,
-      professor: professorButtons,
-      secretary: secretaryButtons,
+      'Admin': adminButtons,
+      'Γραμματεία': secretaryButtons,
     };
 
     return (
       <div>
-        {buttonsMenu[user.role]}
+        {buttonsMenu[user.role.role] || professorButtons}
       </div>
     );
   }

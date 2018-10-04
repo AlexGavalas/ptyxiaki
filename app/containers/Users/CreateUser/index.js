@@ -2,12 +2,20 @@ import React from 'react';
 import { Button, FormGroup, FormControl, ControlLabel, DropdownButton, MenuItem } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
 
 import { createUser } from '../actions';
+import { fetchAllRoles } from 'common/actions';
+import { selectAllRoles } from 'common/selectors';
 
 class CreateUser extends React.Component {
 
-  state = {};
+  state = { role: '' }
+
+  componentDidMount() {
+
+    this.props.dispatch(fetchAllRoles());
+  }
 
   handleInput = (event) => {
 
@@ -27,17 +35,15 @@ class CreateUser extends React.Component {
 
   render() {
 
+    const { roles } = this.props;
+
+    if (!roles) return null;
+
     const fields = {
       name: 'Όνομα',
       surname: 'Επώνυμο',
       password: 'Κωδικός',
       username: 'Username',
-    };
-
-    const roles = {
-      admin: 'Διαχειριστής',
-      professor: 'Υπεύθυνος Τομέα',
-      secretary: 'Γραμματεία',
     };
 
     return (
@@ -58,10 +64,10 @@ class CreateUser extends React.Component {
             <DropdownButton
               bsSize="large"
               bsStyle="info"
-              title={roles[this.state.role] || 'Επιλέξτε ρόλο'}
+              title={this.state.role || 'Επιλέξτε ρόλο'}
               noCaret={true}
               id={0}>
-                {Object.keys(roles).map((role) => (<MenuItem key={role} onClick={() => this.handleDropdown(role)}>{roles[role]}</MenuItem>))}
+                {roles.map((role) => (<MenuItem key={role._id} onClick={() => this.handleDropdown(role)}>{role.role}</MenuItem>))}
             </DropdownButton>
             <br />
             <Button
@@ -80,6 +86,10 @@ class CreateUser extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({ dispatch });
 
-const withConnect = connect(mapDispatchToProps);
+const mapStateToProps = () => createStructuredSelector({
+  roles: selectAllRoles,
+});
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(withConnect)(CreateUser);

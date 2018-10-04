@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import { Table, DropdownButton, MenuItem, Button, Glyphicon } from 'react-bootstrap';
 
-import { selectCourseToEdit, selectAllProfessors } from 'common/selectors';
+import { selectCourseToEdit, selectAllProfessors, selectUser } from 'common/selectors';
 import { getAllProfessors, setProfessorToCourse, removeProfFromCourse } from 'common/actions';
 
 const pick = (object, fields) => fields.reduce((acc, val) => (acc[val] = object[val], acc), {});
@@ -46,6 +46,8 @@ class CoursePage extends React.Component {
 
   handleChange = (event) => {
 
+    if (this.props.user.role.role !== 'Γραμματεία' && this.props.user.role.role !== this.props.course.role.role) return;
+
     const { name, value } = event.target;
 
     if (this.props.course[name] >= +value) {
@@ -56,14 +58,23 @@ class CoursePage extends React.Component {
 
   removeProf = (prof) => {
 
+    if (this.props.user.role.role !== 'Γραμματεία' && this.props.user.role.role !== this.props.course.role.role) return;
+
     this.props.dispatch(removeProfFromCourse(prof));
 
     this.props.history.push('/curriculum');
   }
 
-  handleDropdown = (professor) => this.setState({ professor });
+  handleDropdown = (professor) => {
+
+    if (this.props.user.role.role !== 'Γραμματεία' && this.props.user.role.role !== this.props.course.role.role) return;
+
+    this.setState({ professor });
+  }
 
   assign = () => {
+
+    if (this.props.user.role.role !== 'Γραμματεία' && this.props.user.role.role !== this.props.course.role.role) return;
 
     delete this.state.remaining;
 
@@ -168,6 +179,7 @@ const mapDispatchToProps = (dispatch) => ({ dispatch });
 const mapStateToProps = () => createStructuredSelector({
     course: selectCourseToEdit,
     professors: selectAllProfessors,
+    user: selectUser,
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

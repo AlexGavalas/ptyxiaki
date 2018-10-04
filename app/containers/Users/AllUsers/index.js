@@ -40,7 +40,7 @@ class AllUsers extends React.Component {
           <tbody>
             {users.map((user) => (
               <tr onClick={() => this.goToEdit(user)} key={user.username}>
-                {headers.map((key, i) => (<td key={i}>{user[key]}</td>))}
+                {headers.map((key, i) => (<td key={i}>{user[key].role || user[key]}</td>))}
               </tr>
             ))}
           </tbody>
