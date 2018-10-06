@@ -18,8 +18,8 @@ class Panel extends React.Component {
       <ButtonToolbar>
         <Button bsStyle="primary" bsSize="large" href="/users">Όλοι οι Χρήστες</Button>
         <Button bsStyle="primary" bsSize="large" href="/createUser">Δημιουργία Νέου Χρήστη</Button>
-        <Button bsStyle="primary" bsSize="large" href="/professors">Όλοι οι Καθηγητές</Button>
-        <Button bsStyle="primary" bsSize="large" href="/createProfessor">Δημιουργία Καθηγητή</Button>
+        <Button bsStyle="primary" bsSize="large" href="/professors">Όλοι οι Διδάσκοντες</Button>
+        <Button bsStyle="primary" bsSize="large" href="/createProfessor">Δημιουργία Διδάσκοντα</Button>
         <Button bsStyle="primary" bsSize="large" href="/createRole">Δημιουργία Ρόλου</Button>
         <Button bsStyle="primary" bsSize="large" href="/allRoles">Όλοι οι Ρόλοι</Button>
       </ButtonToolbar>
@@ -28,7 +28,7 @@ class Panel extends React.Component {
     const secretaryButtons = (
       <ButtonToolbar>
         <Button bsStyle="primary" bsSize="large" href="/curriculums">Όλα τα Προγράμματα Σπουδών</Button>
-        <Button bsStyle="primary" bsSize="large" href="/curriculums">Ανάθεση Καθηγητή σε Μάθημα</Button>
+        <Button bsStyle="primary" bsSize="large" href="/curriculums">Ανάθεση Διδάσκοντα σε Μάθημα</Button>
         <Button bsStyle="primary" bsSize="large" href="/createCurriculum">Δημιουργία Νέου Προγράμματος Σπουδών</Button>
         <Button bsStyle="primary" bsSize="large" href="/courses">Όλα τα Μαθήματα</Button>
         <Button bsStyle="primary" bsSize="large" href="/createCourse">Δημιουργία Νέου Μαθήματος</Button>
@@ -37,7 +37,7 @@ class Panel extends React.Component {
 
     const professorButtons = (
       <ButtonToolbar>
-        <Button bsStyle="primary" bsSize="large" href="/curriculums">Ανάθεση Καθηγητή σε Μάθημα</Button>
+        <Button bsStyle="primary" bsSize="large" href="/curriculums">Ανάθεση Διδάσκοντα σε Μάθημα</Button>
       </ButtonToolbar>
     );
 

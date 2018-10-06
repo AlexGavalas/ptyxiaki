@@ -82,6 +82,7 @@ class NameCourses extends React.Component {
             ))}
           </tbody>
         </Table>
+        <br />
         <Button
           block
           onClick={this.handleSubmit}
