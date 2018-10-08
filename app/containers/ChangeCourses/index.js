@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
+import { Table } from 'react-bootstrap';
 
 import { selectCurToEdit, selectAvailableCourses } from 'common/selectors';
 import { getALlExceptTheseCourses } from 'common/actions';
@@ -10,7 +11,7 @@ class ChangeCourses extends React.Component {
 
   componentDidMount() {
 
-      this.props.dispatch(getALlExceptTheseCourses(this.props.curToEdit.courses));
+      this.props.dispatch(getALlExceptTheseCourses([]));
   }
 
   render() {
@@ -20,6 +21,12 @@ class ChangeCourses extends React.Component {
     const { curToEdit, availableCourses } = this.props;
 
     if (!curToEdit || !availableCourses) return null;
+
+    const coursesInCur = availableCourses.filter(f => curToEdit.courses.includes(f._id));
+
+    const coursesOutOfCur = availableCourses.filter(f => !curToEdit.courses.includes(f._id));
+
+    
 
     return null;
   }
