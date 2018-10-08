@@ -197,4 +197,23 @@ const removeProfFromCourse = (req, res) => {
   }
 };
 
-module.exports = { getAllCourses, setCourse, createCurriculum, getCurriculums, updateCourse, fetchCoursesForOneCurriculum, deleteCourse, setProfessorToCourse, removeProfFromCourse };
+const getALlExceptTheseCourses = (req, res) => {
+
+  const database = db.get();
+
+  if (database) {
+
+    const courses = database.collection('courses');
+
+    const ids = req.body.map((item) => ObjectID(item));
+
+    courses.find({ _id: { $nin: ids }}).toArray((error, docs) => {
+
+      if (error) console.log('ERROR');
+
+      else res.json(docs);
+    });
+  }
+};
+
+module.exports = { getAllCourses, setCourse, createCurriculum, getCurriculums, updateCourse, fetchCoursesForOneCurriculum, deleteCourse, setProfessorToCourse, removeProfFromCourse, getALlExceptTheseCourses };

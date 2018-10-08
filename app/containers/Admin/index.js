@@ -27,7 +27,7 @@ class Panel extends React.Component {
 
     const secretaryButtons = (
       <ButtonToolbar>
-        <Button bsStyle="primary" bsSize="large" href="/curriculums">Όλα τα Προγράμματα Σπουδών</Button>
+        <Button bsStyle="primary" bsSize="large" href="/editCurriculums">Όλα τα Προγράμματα Σπουδών</Button>
         <Button bsStyle="primary" bsSize="large" href="/curriculums">Ανάθεση Διδάσκοντα σε Μάθημα</Button>
         <Button bsStyle="primary" bsSize="large" href="/createCurriculum">Δημιουργία Νέου Προγράμματος Σπουδών</Button>
         <Button bsStyle="primary" bsSize="large" href="/courses">Όλα τα Μαθήματα</Button>

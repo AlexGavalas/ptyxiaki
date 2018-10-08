@@ -13,6 +13,8 @@ import NameCourses from '../NameCourses';
 import AllCurriculums from '../AllCurriculums';
 import CurriculumToAssign from '../curriculumToAssign';
 import CoursePage from '../CoursePage';
+import EditCurriculums from '../EditCurriculums';
+import ChangeCourses from '../ChangeCourses';
 
 import AllRoles from 'containers/Roles/AllRoles';
 import CreateRole from 'containers/Roles/CreateRole';
@@ -70,8 +72,10 @@ class Home extends React.Component {
             <Route exact path="/createRole" component={CreateRole} />
             <Route exact path="/editRole" component={EditRole} />
 
+            <Route exact path="/editCur" component={ChangeCourses} />
             <Route exact path="/createCurriculum" component={CreateCurriculum} />
             <Route exact path="/curriculums" component={AllCurriculums} />
+            <Route exact path="/editCurriculums" component={EditCurriculums} />
             <Route exact path="/nameCourses" component={NameCourses} />
             <Route exact path="/curriculum" component={CurriculumToAssign} />
             <Route exact path="/coursePage" component={CoursePage} />

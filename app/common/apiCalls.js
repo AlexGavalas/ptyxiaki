@@ -16,6 +16,7 @@ export const deleteCourse = (data) => axios.post('/deleteCourse', data);
 export const fetchCoursesForOneCurriculum = (cur) => axios.post('/fetchCoursesForOneCurriculum', { data: cur });
 export const setProfessorToCourse = (data) => axios.post('/setProfessorToCourse', data);
 export const removeProfFromCourse = (data) => axios.post('/removeProfFromCourse', data);
+export const getALlExceptTheseCourses = (data) => axios.post('/getALlExceptTheseCourses', data);
 
 // Professors
 export const getAllProfessors = () => axios.get('/getAllProfessors');

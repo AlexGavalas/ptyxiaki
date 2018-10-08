@@ -117,3 +117,13 @@ export function * updateRole (action) {
 export function * deleteRole (action) {
   yield call(api.deleteRole, action.data);
 }
+
+export function * getALlExceptTheseCourses (action) {
+
+  const response = yield call(api.getALlExceptTheseCourses, action.data);
+
+  if (!response.data.error) {
+
+    yield put(ACTIONS.setAllAvailableCourses(response.data));
+  }
+}

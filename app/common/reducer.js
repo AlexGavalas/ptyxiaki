@@ -81,6 +81,18 @@ function reducer(state = initialState, action) {
         roleToEdit: action.data,
       };
 
+    case C.SET_CURRICULUM_TO_EDIT:
+      return {
+        ...state,
+        curToEdit: action.data,
+      };
+
+    case C.SET_ALL_AVAILABLE_COURSES:
+      return {
+        ...state,
+        availableCourses: action.data,
+      };
+
     default:
       return state;
   }

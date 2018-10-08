@@ -72,6 +72,7 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
   app.post('/newRole', roles.createRole);
   app.post('/updateRole', roles.updateRole);
   app.post('/deleteRole', roles.deleteRole);
+  app.post('/getALlExceptTheseCourses', courses.getALlExceptTheseCourses);
 
   app.get('/user', (req, res) => res.json({ user: req.user || null }));
   app.get('/getAllCourses', courses.getAllCourses);

@@ -18,6 +18,7 @@ export const createCurriculum = (data) => ({ type: C.CREATE_CURRICULUM, data });
 export const getCurriculums = () => ({ type: C.GET_CURRICULUMS });
 export const setCurriculums = (data) => ({ type: C.SET_CURRICULUMS, data });
 export const setCurriculumToAssign = (data) => ({ type: C.SET_CURRICULUM_TO_ASSIGN, data });
+export const setCurriculumToEdit = (data) => ({ type: C.SET_CURRICULUM_TO_EDIT, data });
 
 // Courses
 export const getAllCourses = () => ({ type: C.GET_ALL_COURSES });
@@ -31,6 +32,8 @@ export const setCoursesToAssign = (data) => ({ type: C.SET_COURSES_TO_ASSIGN, da
 export const deleteCourse = (data) => ({ type: C.DELETE_COURSE, data });
 export const setProfessorToCourse = (data) => ({ type: C.SET_PROFESSOR_TO_COURSE, data });
 export const removeProfFromCourse = (data) => ({ type: C.REMOVE_PROF_FROM_COURSE, data });
+export const getALlExceptTheseCourses = (data) => ({ type: C.GET_ALL_EXCEPT_THESE_COURSES, data });
+export const setAllAvailableCourses = (data) => ({ type: C.SET_ALL_AVAILABLE_COURSES, data });
 
 // Professors
 export const getAllProfessors = () => ({ type: C.GET_ALL_PROFESSORS });
