@@ -41,15 +41,17 @@ const createCurriculum = (req, res) => {
 
     const curriculums = database.collection('curriculums');
 
-    const curriculum = req.body;
+    const prevCourses = req.body.courses;
 
-    const courses = Object.keys(curriculum.courses).map((id) => ObjectID(id));
+    let { title, courses, year } = req.body;
 
-    curriculums.insert({ title: curriculum.title, courses }, (error, doc) => {
+    courses = Object.keys(courses).map((id) => ObjectID(id));
+
+    curriculums.insert({ title, courses, year }, (error, doc) => {
 
       if (error) console.log('ERROR');
 
-      curriculums.find({ title: curriculum.title }).toArray((error, doc) => {
+      curriculums.find({ title }).toArray((error, doc) => {
 
         const curID = doc[0]._id;
 
@@ -63,9 +65,9 @@ const createCurriculum = (req, res) => {
 
             if (!toUpdate.ids) toUpdate.ids = {};
 
-            toUpdate.curriculumNames[curID] = curriculum.courses[id].maidenName;
+            toUpdate.curriculumNames[curID] = prevCourses[id].maidenName;
 
-            toUpdate.ids[curID] = curriculum.courses[id].id;
+            toUpdate.ids[curID] = prevCourses[id].id;
 
             database.collection('courses').update({ _id: id }, toUpdate);
           });

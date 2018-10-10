@@ -51,7 +51,7 @@ class NameCourses extends React.Component {
       if (!courses[key].maidenName) courses[key].maidenName = courses[key].name;
     });
 
-    this.props.dispatch(createCurriculum({ title: this.props.curriculumName, courses }));
+    this.props.dispatch(createCurriculum({ title: this.props.curriculumName, courses, year: new Date().getFullYear() }));
 
     this.props.history.push('/');
   }

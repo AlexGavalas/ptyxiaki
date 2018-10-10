@@ -15,7 +15,7 @@ class AllCurriculums extends React.Component {
   }
 
   goToAssignment = (curriculum) => {
-    
+
     this.props.dispatch(setCurriculumToAssign(curriculum));
 
     this.props.history.push('/curriculum');
@@ -28,7 +28,7 @@ class AllCurriculums extends React.Component {
     if (!curriculums) return null;
 
     const headers = ['Title', 'Number of Courses'];
-
+    
     return (
       <div className="Login">
         <Table>
