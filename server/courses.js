@@ -203,6 +203,8 @@ const getALlExceptTheseCourses = (req, res) => {
 
   const database = db.get();
 
+  const toSend = {};
+
   if (database) {
 
     const courses = database.collection('courses');
@@ -213,9 +215,60 @@ const getALlExceptTheseCourses = (req, res) => {
 
       if (error) console.log('ERROR');
 
-      else res.json(docs);
+      else {
+
+        toSend.available = docs;
+
+        courses.find({ _id: { $in: ids }}).toArray((error, docs) => {
+
+          if (error) console.log('ERROR');
+
+          else {
+
+            toSend.registered = docs;
+
+            res.json(toSend);
+          }
+        });
+      }
     });
   }
 };
 
-module.exports = { getAllCourses, setCourse, createCurriculum, getCurriculums, updateCourse, fetchCoursesForOneCurriculum, deleteCourse, setProfessorToCourse, removeProfFromCourse, getALlExceptTheseCourses };
+const updateCurriculum = (req, res) => {
+
+  const database = db.get();
+
+  if (database) {
+
+    const curriculums = database.collection('curriculums');
+
+    curriculums.find({ _id: ObjectID(req.body._id) }).toArray((error, doc) => {
+
+      if (error) console.log('ERROR');
+
+      else {
+
+        const toUpdate = doc[0];
+
+        toUpdate.courses = req.body.courses;
+
+        curriculums.update({ _id: toUpdate._id }, toUpdate);
+      }
+    });
+  }
+}
+
+module.exports = {
+  getAllCourses,
+  setCourse,
+  createCurriculum,
+  getCurriculums,
+  updateCourse,
+  fetchCoursesForOneCurriculum,
+  deleteCourse,
+  setProfessorToCourse,
+  removeProfFromCourse,
+  getALlExceptTheseCourses,
+  updateCurriculum
+};

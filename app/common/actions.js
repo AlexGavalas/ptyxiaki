@@ -19,6 +19,7 @@ export const getCurriculums = () => ({ type: C.GET_CURRICULUMS });
 export const setCurriculums = (data) => ({ type: C.SET_CURRICULUMS, data });
 export const setCurriculumToAssign = (data) => ({ type: C.SET_CURRICULUM_TO_ASSIGN, data });
 export const setCurriculumToEdit = (data) => ({ type: C.SET_CURRICULUM_TO_EDIT, data });
+export const updateCurriculum = (data) => ({ type: C.UPDATE_CURRICULUM, data });
 
 // Courses
 export const getAllCourses = () => ({ type: C.GET_ALL_COURSES });

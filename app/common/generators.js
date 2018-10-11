@@ -127,3 +127,7 @@ export function * getALlExceptTheseCourses (action) {
     yield put(ACTIONS.setAllAvailableCourses(response.data));
   }
 }
+
+export function * updateCurriculum (action) {
+  yield call(api.updateCurriculum, action.data);
+}

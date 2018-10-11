@@ -7,6 +7,7 @@ export const fetchUserInfo = () => axios.get('/user');
 // Curriculum
 export const getCurriculums = () => axios.get('/getCurriculums');
 export const createCurriculum = (data) => axios.post('/createCurriculum', data);
+export const updateCurriculum = (data) => axios.post('updateCurriculum', data);
 
 // Courses
 export const getAllCourses = () => axios.get('/getAllCourses');

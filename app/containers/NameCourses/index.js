@@ -58,6 +58,8 @@ class NameCourses extends React.Component {
 
   render() {
 
+    console.log(this.props);
+
     const { coursesToName } = this.props;
 
     const headers = ['Generic Name', 'Specific Name', 'ID'];

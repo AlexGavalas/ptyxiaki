@@ -24,4 +24,5 @@ export default function * watcher () {
   yield takeLatest([C.UPDATE_ROLE], GEN.updateRole);
   yield takeLatest([C.DELETE_ROLE], GEN.deleteRole);
   yield takeLatest([C.GET_ALL_EXCEPT_THESE_COURSES], GEN.getALlExceptTheseCourses);
+  yield takeLatest([C.UPDATE_CURRICULUM], GEN.updateCurriculum);
 }

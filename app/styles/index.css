@@ -1,7 +1,14 @@
 @media all and (min-width: 480px) {
+
   .Login {
     margin: 0 auto;
     padding: 60px 0;
+  }
+
+  .Login2 {
+    margin: 0 auto;
+    padding: 60px 0;
+    max-width: 70em;
   }
 
   .Login form {
@@ -43,5 +50,13 @@
 
   .selected {
     background-color: lightgreen;
+  }
+
+  .selected-green {
+    background-color: lightgreen;
+  }
+
+  .selected-red {
+    background-color: red;
   }
 }
