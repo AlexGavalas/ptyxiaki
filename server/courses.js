@@ -243,7 +243,9 @@ const updateCurriculum = (req, res) => {
 
     const curriculums = database.collection('curriculums');
 
-    curriculums.find({ _id: ObjectID(req.body._id) }).toArray((error, doc) => {
+    const courses = database.collection('courses');
+
+    curriculums.find({ _id: ObjectID(req.body.id) }).toArray((error, doc) => {
 
       if (error) console.log('ERROR');
 
@@ -251,9 +253,38 @@ const updateCurriculum = (req, res) => {
 
         const toUpdate = doc[0];
 
-        toUpdate.courses = req.body.courses;
+        toUpdate.courses = Object.keys(req.body.courses);
 
         curriculums.update({ _id: toUpdate._id }, toUpdate);
+
+        toUpdate.courses.forEach((course) => {
+
+          courses.find({ _id: ObjectID(course) }).toArray((error, doc) => {
+
+            if (error) console.log('ERROR');
+
+            else {
+
+              const updatedCourse = doc[0];
+
+              if (updatedCourse.ids) {
+
+                updatedCourse.ids[req.body.id] = req.body.courses[course].id;
+
+                updatedCourse.curriculumNames[req.body.id] = req.body.courses[course].maidenName;
+              }
+
+              else {
+
+                updatedCourse.ids = { [req.body.id]: req.body.courses[course].id };
+
+                updatedCourse.curriculumNames = { [req.body.id]: req.body.courses[course].maidenName };
+              }
+
+              courses.update({ _id: ObjectID(updatedCourse._id) }, updatedCourse);
+            }
+          });
+        });
       }
     });
   }

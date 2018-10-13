@@ -33,15 +33,18 @@ class ChangeCourses extends React.Component {
 
     newCourses = newCourses.concat(this.props.availableCourses.available.filter(f => this.state.selected[f._id]));
 
-    const toSend = this.props.curToEdit;
+    newCourses = newCourses.map((item) => {
 
-    toSend.courses = newCourses;
+        item.id = item.ids ? item.ids[this.props.curToEdit._id] : item.id;
 
-    this.props.dispatch(setCoursesToName(newCourses));
+        item.name = item.curriculumNames ? item.curriculumNames[this.props.curToEdit._id] : item.name;
 
-    // this.props.dispatch(updateCurriculum(toSend));
+        return item;
+    });
 
-    this.props.history.push('/nameCourses');
+    this.props.dispatch(setCoursesToName({ newCourses, curID: this.props.curToEdit._id }));
+
+    this.props.history.push('/editCoursesNameAndCode');
   }
 
   render() {
@@ -88,7 +91,7 @@ class ChangeCourses extends React.Component {
             onClick={this.handleSubmit}
             bsSize="large"
             bsStyle="primary">
-              Καταχώρηση Αλλαγών
+              Επόμενο
           </Button>
         </div>
       </div>

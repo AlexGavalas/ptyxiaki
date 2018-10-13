@@ -5,9 +5,9 @@ import { createStructuredSelector } from 'reselect';
 import { Table, Button } from 'react-bootstrap';
 
 import { selecteCoursesToName, selectCurriculumName } from 'common/selectors';
-import { createCurriculum } from 'common/actions';
+import { updateCurriculum } from 'common/actions';
 
-class NameCourses extends React.Component {
+class EditCoursesNameAndCode extends React.Component {
 
   state = {};
 
@@ -15,7 +15,7 @@ class NameCourses extends React.Component {
 
     const courses = {};
 
-    this.props.coursesToName.forEach((course) => courses[course._id] = course);
+    this.props.coursesToName.newCourses.forEach((course) => courses[course._id] = course);
 
     this.setState({ courses });
   }
@@ -51,12 +51,14 @@ class NameCourses extends React.Component {
       if (!courses[key].maidenName) courses[key].maidenName = courses[key].name;
     });
 
-    this.props.dispatch(createCurriculum({ title: this.props.curriculumName, courses, year: new Date().getFullYear() }));
+    this.props.dispatch(updateCurriculum({ courses, id: this.props.coursesToName.curID }));
 
     this.props.history.push('/');
   }
 
   render() {
+
+    console.log(this.props);
 
     const { coursesToName } = this.props;
 
@@ -73,7 +75,7 @@ class NameCourses extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {coursesToName.map((course) => (
+            {coursesToName.newCourses.map((course) => (
               <tr key={course._id}>
                 <td>{course.name}</td>
                 <td><input onChange={this.handleChange} name={course._id} defaultValue={course.maidenName || course.name}/></td>
@@ -104,4 +106,4 @@ const mapStateToProps = createStructuredSelector({
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(withConnect)(NameCourses);
+export default compose(withConnect)(EditCoursesNameAndCode);
