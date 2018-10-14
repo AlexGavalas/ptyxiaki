@@ -71,9 +71,9 @@ const deleteUser = (req, res) => {
 
   if (database) {
 
-      const users = database.collection('users');
+    const users = database.collection('users');
 
-      users.remove({ _id: ObjectID(req.body._id) });
+    users.remove({ _id: ObjectID(req.body._id) });
   }
 };
 

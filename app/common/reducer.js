@@ -1,8 +1,6 @@
 import * as C from 'common/constants';
 
-const initialState = {
-  username: null,
-};
+const initialState = {};
 
 function reducer(state = initialState, action) {
 

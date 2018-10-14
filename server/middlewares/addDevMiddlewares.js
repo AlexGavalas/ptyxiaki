@@ -4,8 +4,10 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const passport = require('passport');
 const Strategy = require('passport-local').Strategy;
+
 const user = require('../users');
 const courses = require('../courses');
 const professors = require('../professors');
@@ -33,6 +35,7 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
     cookie: { maxAge: 60000 * 60 * 2 },
     resave: false,
     saveUninitialized: false,
+    store: new MongoStore({ url: 'mongodb://localhost:27017' }),
   }));
 
   app.use(bodyParser.json());

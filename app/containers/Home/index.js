@@ -6,32 +6,7 @@ import { createStructuredSelector } from 'reselect';
 
 import Header from 'components/Header';
 
-import Login from '../Login';
-import Panel from '../Admin';
-import CreateCurriculum from '../CreateCurriculum';
-import NameCourses from '../NameCourses';
-import AllCurriculums from '../AllCurriculums';
-import CurriculumToAssign from '../curriculumToAssign';
-import CoursePage from '../CoursePage';
-import EditCurriculums from '../EditCurriculums';
-import ChangeCourses from '../ChangeCourses';
-import EditCoursesNameAndCode from '../EditCoursesNameAndCodes';
-
-import AllRoles from 'containers/Roles/AllRoles';
-import CreateRole from 'containers/Roles/CreateRole';
-import EditRole from 'containers/Roles/EditRole';
-
-import AllCourses from 'containers/Courses/AllCourses';
-import CreateCourse from 'containers/Courses/CreateCourse';
-import EditCourse from 'containers/Courses/EditCourse';
-
-import AllUsers from 'containers/Users/AllUsers';
-import CreateUser from 'containers/Users/CreateUser';
-import EditUser from 'containers/Users/EditUser';
-
-import AllProfessors from 'containers/Professors/AllProfessors';
-import CreateProfessor from 'containers/Professors/CreateProfessor';
-import EditProfessor from 'containers/Professors/EditProfessor';
+import COMPONENTS from './components';
 
 import { selectUser } from 'common/selectors';
 import { fetchUserInfo } from 'common/actions';
@@ -47,40 +22,41 @@ class Home extends React.Component {
 
     const { user } = this.props;
 
-    if (user == null) return (<Login />);
+    if (user === null) return (<COMPONENTS.Login />);
+
+    else if (!user) return null;
 
     return (
       <div>
         <Header />
         <BrowserRouter>
           <Switch>
+            <Route exact path="/" component={COMPONENTS.Panel} user={user} />
 
-            <Route exact path="/" component={Panel} user={user} />
+            <Route exact path="/users" component={COMPONENTS.AllUsers} />
+            <Route exact path="/editUser" component={COMPONENTS.EditUser} />
+            <Route exact path="/createUser" component={COMPONENTS.CreateUser} />
 
-            <Route exact path="/users" component={AllUsers} />
-            <Route exact path="/editUser" component={EditUser} />
-            <Route exact path="/createUser" component={CreateUser} />
+            <Route exact path="/courses" component={COMPONENTS.AllCourses} />
+            <Route exact path="/editCourse" component={COMPONENTS.EditCourse} />
+            <Route exact path="/createCourse" component={COMPONENTS.CreateCourse} />
 
-            <Route exact path="/courses" component={AllCourses} />
-            <Route exact path="/editCourse" component={EditCourse} />
-            <Route exact path="/createCourse" component={CreateCourse} />
+            <Route exact path="/professors" component={COMPONENTS.AllProfessors} />
+            <Route exact path="/editProfessor" component={COMPONENTS.EditProfessor} />
+            <Route exact path="/createProfessor" component={COMPONENTS.CreateProfessor} />
 
-            <Route exact path="/professors" component={AllProfessors} />
-            <Route exact path="/editProfessor" component={EditProfessor} />
-            <Route exact path="/createProfessor" component={CreateProfessor} />
+            <Route exact path="/allRoles" component={COMPONENTS.AllRoles} />
+            <Route exact path="/createRole" component={COMPONENTS.CreateRole} />
+            <Route exact path="/editRole" component={COMPONENTS.EditRole} />
 
-            <Route exact path="/allRoles" component={AllRoles} />
-            <Route exact path="/createRole" component={CreateRole} />
-            <Route exact path="/editRole" component={EditRole} />
-
-            <Route exact path="/editCoursesNameAndCode" component={EditCoursesNameAndCode} />
-            <Route exact path="/editCur" component={ChangeCourses} />
-            <Route exact path="/createCurriculum" component={CreateCurriculum} />
-            <Route exact path="/curriculums" component={AllCurriculums} />
-            <Route exact path="/editCurriculums" component={EditCurriculums} />
-            <Route exact path="/nameCourses" component={NameCourses} />
-            <Route exact path="/curriculum" component={CurriculumToAssign} />
-            <Route exact path="/coursePage" component={CoursePage} />
+            <Route exact path="/editCoursesNameAndCode" component={COMPONENTS.EditCoursesNameAndCode} />
+            <Route exact path="/editCur" component={COMPONENTS.ChangeCourses} />
+            <Route exact path="/createCurriculum" component={COMPONENTS.CreateCurriculum} />
+            <Route exact path="/curriculums" component={COMPONENTS.AllCurriculums} />
+            <Route exact path="/editCurriculums" component={COMPONENTS.EditCurriculums} />
+            <Route exact path="/nameCourses" component={COMPONENTS.NameCourses} />
+            <Route exact path="/curriculum" component={COMPONENTS.CurriculumToAssign} />
+            <Route exact path="/coursePage" component={COMPONENTS.CoursePage} />
           </Switch>
         </BrowserRouter>
       </div>
@@ -90,9 +66,7 @@ class Home extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({ dispatch });
 
-const mapStateToProps = createStructuredSelector({
-  user: selectUser
-});
+const mapStateToProps = () => createStructuredSelector({ user: selectUser });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 

@@ -126,6 +126,8 @@ const fetchCoursesForOneCurriculum = (req, res) => {
 
       else {
 
+        doc[0].courses = doc[0].courses.map((id) => ObjectID(id));
+
         courses.find({ _id: { $in: doc[0].courses }}).toArray((error, docs) => {
 
             if (error) console.log('ERROR');

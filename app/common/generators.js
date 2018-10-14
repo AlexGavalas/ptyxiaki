@@ -21,6 +21,7 @@ export function * setUser () {
 }
 
 export function * createCurriculum (action) {
+
   yield call(api.createCurriculum, action.data);
 }
 

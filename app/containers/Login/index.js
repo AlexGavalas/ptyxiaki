@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import 'styles/Login.css';
-
 import logo from 'images/logo.png';
 
 import { authenticateUser } from 'common/actions';
